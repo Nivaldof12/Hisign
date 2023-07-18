@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +23,9 @@ public class HorarioService {
     public void excluirHorarioPorId(Integer id) {
         horarioRepository.deleteById(id);
     }
+    
+    // Método para listar os horários
+	public Collection<Horario> obterLista(){
+		return (Collection<Horario>) horarioRepository.findAll();
+	}
 }
