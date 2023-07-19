@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Cadastro de Usuário</title>
+<title>Cadastro de Horário</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
 			<div class="form-group">
 				<label>Nome da atividade:</label> <input type="text" name="nome"
-					value="Trilha de imersão Estágio" class="form-control">
+					value="Fazer Teste" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -39,15 +39,15 @@
 
 			<div class="form-group">
 				<label>Descrição:</label>
-				<textarea name="descricao" class="form-control">Preciso ver as aulas da trilha de imersão</textarea>
+				<textarea name="descricao" class="form-control">Preciso fazer o teste de Back-end</textarea>
 			</div>
 
 
 			<div class="form-group">
 				<label>Tipo de atividade:</label> <select name="tipo"
 					class="form-control">
-					<option value="Estudar" selected>Estudar</option>
-					<option value="Atividade">Atividade</option>
+					<option value="Estudar">Estudar</option>
+					<option value="Atividade" selected>Atividade</option>
 					<option value="Compromisso">Compromisso</option>
 					<option value="Lembrete">Lembrete</option>
 				</select>

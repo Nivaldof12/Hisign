@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<title>Horário</title>
+	<title>Menu Hisig</title>
 </head>
 <body>
 
@@ -18,10 +18,12 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="/horario/lista">Horário</a></li>
+      <li><a href="/teste/lista">Teste</a></li>
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
 	      <li><a href="/horario"><span class="glyphicon glyphicon-time"></span> Cadastrar Horário</a></li>
+	      <li><a href="/teste"><span class="glyphicon glyphicon-list-alt"></span> Cadastrar Teste</a></li>
     </ul>
   </div>
 </nav>
