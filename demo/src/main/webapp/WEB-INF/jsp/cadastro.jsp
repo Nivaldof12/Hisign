@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Cadastro de Hor·rio</title>
+<title>Cadastro de Hor√°rio</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 
 
 		<form action="/horario/incluir" method="post">
-			<h3>Cadastro de Hor·rio</h3>
+			<h3>Cadastro de Hor√°rio</h3>
 			<br>
 
 			<div class="form-group">
@@ -38,7 +38,7 @@
 			</div>
 
 			<div class="form-group">
-				<label>DescriÁ„o:</label>
+				<label>Descri√ß√£o:</label>
 				<textarea name="descricao" class="form-control">Preciso fazer o teste de Back-end</textarea>
 			</div>
 
@@ -54,7 +54,7 @@
 			</div>
 
 			<div class="form-group">
-				<label>Link da Reuni„o (Opcional):</label> <input type="text"
+				<label>Link da Reuni√£o (Opcional):</label> <input type="text"
 					name="linkReuniao" value="https://meet.jit.si/HiPizza2023"
 					class="form-control">
 			</div>
