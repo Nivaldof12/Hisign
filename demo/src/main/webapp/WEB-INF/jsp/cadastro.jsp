@@ -15,49 +15,37 @@
 
 	<div class="container">
 
-
 		<form action="/horario/incluir" method="post">
 			<h3>Cadastro de Horário</h3>
 			<br>
 
 			<div class="form-group">
-				<label>Nome da atividade:</label> <input type="text" name="nome"
-					value="Fazer Teste" class="form-control">
+				<label>Entrada:</label> <input type="time" name="entrada">
 			</div>
 
 			<div class="form-group">
-				<label>Inicio da atividade:</label> <input type="time" name="inicio">
+				<label>Intervalo:</label> <input type="time" name="intervalo">
 			</div>
 
 			<div class="form-group">
-				<label>Fim da atividade:</label> <input type="time" name="fim">
+				<label>Saída:</label> <input type="time" name="saida">
 			</div>
 
 			<div class="form-group">
-				<label>Data:</label> <input type="date" name="dia">
-			</div>
-
-			<div class="form-group">
-				<label>Descrição:</label>
-				<textarea name="descricao" class="form-control">Preciso fazer o teste de Back-end</textarea>
+				<label>Observação:</label>
+				<textarea name="observacao" class="form-control">Exemplo: Na terça eu vou entrar 08:00 e sair de 11:00 e volto 15:00 até as 18:00</textarea>
 			</div>
 
 
 			<div class="form-group">
-				<label>Tipo de atividade:</label> <select name="tipo"
+				<label>Equipe Turno:</label> <select name="turno"
 					class="form-control">
-					<option value="Estudar">Estudar</option>
-					<option value="Atividade" selected>Atividade</option>
-					<option value="Compromisso">Compromisso</option>
-					<option value="Lembrete">Lembrete</option>
+					<option value="Estudar">Matutina</option>
+					<option value="Atividade" selected>Vespertino</option>
+					<option value="Compromisso">Noturno</option>
 				</select>
 			</div>
 
-			<div class="form-group">
-				<label>Link da Reunião (Opcional):</label> <input type="text"
-					name="linkReuniao" value="https://meet.jit.si/HiPizza2023"
-					class="form-control">
-			</div>
 			<button type="submit" class="btn btn-success">Cadastrar</button>
 		</form>
 	</div>

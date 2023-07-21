@@ -59,7 +59,7 @@
 								<td>${t.id}</td>
 								<td>${t.nometeste}</td>
 								<td>${t.resumo}</td>
-								<td>${t.fileData}</td>
+								<td><a href="/${t.fileData}" download> <span class="glyphicon glyphicon-download"></span></a></td>
 								<td><a href=${t.linkgit}>${t.linkgit}</a></td>
 								<td>${t.equipe}</td>
 								<td><a href="/teste/${t.id}/excluir">excluir</a></td>
@@ -93,7 +93,7 @@
 								<td>${t.id}</td>
 								<td>${t.nometeste}</td>
 								<td>${t.resumo}</td>
-								<td>${t.fileData}</td>
+								<td><a href="/${t.fileData}" download> <span class="glyphicon glyphicon-download"></span></a></td>
 								<td><a href=${t.linkgit}>${t.linkgit}</a></td>
 								<td>${t.equipe}</td>
 								<td><a href="/teste/${t.id}/excluir">excluir</a></td>
@@ -127,7 +127,7 @@
 								<td>${t.id}</td>
 								<td>${t.nometeste}</td>
 								<td>${t.resumo}</td>
-								<td>${t.fileData}</td>
+								<td><a href="/${t.fileData}" download> <span class="glyphicon glyphicon-download"></span></a></td>
 								<td><a href=${t.linkgit}>${t.linkgit}</a></td>
 								<td>${t.equipe}</td>
 								<td><a href="/teste/${t.id}/excluir">excluir</a></td>

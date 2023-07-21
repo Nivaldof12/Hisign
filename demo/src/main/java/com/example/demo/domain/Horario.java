@@ -13,26 +13,20 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "entrada")
+    private String entrada;
 
-    @Column(name = "inicio")
-    private String inicio;
+    @Column(name = "intervalo")
+    private String intervalo;
 
-    @Column(name = "fim")
-    private String fim;
+    @Column(name = "saida")
+    private String saida;
 
-    @Column(name = "dia")
-    private String dia;
+    @Column(name = "observacao")
+    private String observacao;
 
-    @Column(name = "descricao")
-    private String descricao;
-
-    @Column(name = "tipo")
-    private String tipo;
-
-    @Column(name = "linkReuniao")
-    private String linkReuniao;
+    @Column(name = "turno")
+    private String turno;
 
 	public Integer getId() {
 		return id;
@@ -42,61 +36,44 @@ public class Horario {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getEntrada() {
+		return entrada;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setEntrada(String entrada) {
+		this.entrada = entrada;
 	}
 
-	public String getInicio() {
-		return inicio;
+	public String getIntervalo() {
+		return intervalo;
 	}
 
-	public void setInicio(String inicio) {
-		this.inicio = inicio;
+	public void setIntervalo(String intervalo) {
+		this.intervalo = intervalo;
 	}
 
-	public String getFim() {
-		return fim;
+	public String getSaida() {
+		return saida;
 	}
 
-	public void setFim(String fim) {
-		this.fim = fim;
+	public void setSaida(String saida) {
+		this.saida = saida;
 	}
 
-	public String getDia() {
-		return dia;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setDia(String dia) {
-		this.dia = dia;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getTurno() {
+		return turno;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setTurno(String turno) {
+		this.turno = turno;
 	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getLinkReuniao() {
-		return linkReuniao;
-	}
-
-	public void setLinkReuniao(String linkReuniao) {
-		this.linkReuniao = linkReuniao;
-	}
-
-    
+ 
 }

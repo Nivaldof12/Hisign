@@ -36,13 +36,11 @@
 			  <thead>
 			    <tr>
 			      <th>ID</th>
-			      <th>Nome</th>
-			      <th>Inicio</th>
-			      <th>Fim</th>
-			      <th>dia</th>
-			      <th>Descrição</th>
-			      <th>Tipo</th>
-			      <th>Link</th>
+			      <th>Entrada</th>
+			      <th>Intervalo</th>
+			      <th>Saida</th>
+			      <th>Observação</th>
+			      <th>turno</th>
 			      <th></th>	  
 			    </tr>
 			  </thead>
@@ -51,13 +49,11 @@
 			  	<c:forEach var="h" items="${horarios}">
 				    <tr>
 				      <td>${h.id}</td>
-				      <td>${h.nome}</td>
-				      <td>${h.inicio}</td>
-				      <td>${h.fim}</td>
-				      <td>${h.dia}</td>
-				      <td>${h.descricao}</td>
-				      <td>${h.tipo}</td>
-				      <td>${h.linkReuniao}</td>
+				      <td>${h.entrada}</td>
+				      <td>${h.intervalo}</td>
+				      <td>${h.saida}</td>
+				      <td>${h.observacao}</td>
+				      <td>${h.turno}</td>
 				      <td><a href="/horario/${h.id}/excluir">excluir</a></td>				      
 			    </c:forEach>
 			  </tbody>
