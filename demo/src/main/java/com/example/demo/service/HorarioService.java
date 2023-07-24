@@ -11,21 +11,24 @@ import com.example.demo.repository.HorarioRepository;
 @Service
 public class HorarioService {
 	@Autowired
-    private HorarioRepository horarioRepository;
+	private HorarioRepository horarioRepository;
 
+	// Método para salvar um horário
+	public Horario incluir(Horario horario) {
+		return horarioRepository.save(horario);
+	}
 
-    // Método para salvar um horário
-    public Horario incluir(Horario horario) {
-        return horarioRepository.save(horario);
-    }
+	// Método para excluir um horário com base no ID
+	public void excluirHorarioPorId(Integer id) {
+		horarioRepository.deleteById(id);
+	}
 
-    // Método para excluir um horário com base no ID
-    public void excluirHorarioPorId(Integer id) {
-        horarioRepository.deleteById(id);
-    }
-    
-    // Método para listar os horários
-	public Collection<Horario> obterLista(){
+	// Método para listar os horários
+	public Collection<Horario> obterLista() {
 		return (Collection<Horario>) horarioRepository.findAll();
 	}
+
+    public Horario obterHorarioPorId(Integer id) {
+        return horarioRepository.findById(id).orElse(null);
+    }
 }

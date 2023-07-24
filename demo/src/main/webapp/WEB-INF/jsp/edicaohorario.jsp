@@ -8,15 +8,15 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Cadastro de Horário</title>
+<title>Editar de Horário</title>
 </head>
 
 <body>
 
 	<div class="container">
-
-		<form action="/horario/incluir" method="post">
-			<h3>Cadastro de Horário</h3>
+	
+		<form action="/horario/${id}/alterar" method="post">
+			<h3>Editar de Horário</h3>
 			<br>
 
 			<div class="form-group">
@@ -33,7 +33,7 @@
 
 			<div class="form-group">
 				<label>Observação:</label>
-				<textarea name="observacao" class="form-control">Exemplo: Na terça eu vou entrar 08:00 e sair de 11:00 e volto 15:00 até as 18:00</textarea>
+				<textarea name="observacao" class="form-control">Exemplo: Segunda eu só trabalho 5 horas</textarea>
 			</div>
 
 
@@ -41,8 +41,8 @@
 				<label>Equipe Turno:</label> <select name="turno"
 					class="form-control">
 					<option value="Matutina">Matutina</option>
-					<option value="Vespertino" selected>Vespertino</option>
-					<option value="Noturno">Noturno</option>
+					<option value="Vespertino">Vespertino</option>
+					<option value="Noturno" selected>Noturno</option>
 				</select>
 			</div>
 

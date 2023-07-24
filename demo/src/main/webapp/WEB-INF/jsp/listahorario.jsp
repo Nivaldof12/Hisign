@@ -40,7 +40,8 @@
 			      <th>Intervalo</th>
 			      <th>Saida</th>
 			      <th>Observação</th>
-			      <th>turno</th>
+			      <th>Turno</th>
+			      <th>Alterar</th>
 			      <th></th>	  
 			    </tr>
 			  </thead>
@@ -54,6 +55,7 @@
 				      <td>${h.saida}</td>
 				      <td>${h.observacao}</td>
 				      <td>${h.turno}</td>
+				      <td><a href="/horario/${h.id}/editar"> <span class="glyphicon glyphicon-pencil"></span></a></td>
 				      <td><a href="/horario/${h.id}/excluir">excluir</a></td>				      
 			    </c:forEach>
 			  </tbody>
