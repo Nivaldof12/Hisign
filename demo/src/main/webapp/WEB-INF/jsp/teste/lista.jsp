@@ -83,6 +83,7 @@
 					<th>Anexo</th>
 					<th>Link</th>
 					<th>Equipe</th>
+					<th>Alterar</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -98,6 +99,7 @@
 								<td><a href="/${t.fileData}" download> <span class="glyphicon glyphicon-download"></span></a></td>
 								<td><a href=${t.linkgit}>${t.linkgit}</a></td>
 								<td>${t.equipe}</td>
+								<td><a href="/teste/${t.id}/editar"> <span class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a href="/teste/${t.id}/excluir">excluir</a></td>
 							</tr>
 						</c:when>
@@ -117,6 +119,7 @@
 					<th>Anexo</th>
 					<th>Link</th>
 					<th>Equipe</th>
+					<th>Alterar</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -132,6 +135,7 @@
 								<td><a href="/${t.fileData}" download> <span class="glyphicon glyphicon-download"></span></a></td>
 								<td><a href=${t.linkgit}>${t.linkgit}</a></td>
 								<td>${t.equipe}</td>
+								<td><a href="/teste/${t.id}/editar"> <span class="glyphicon glyphicon-pencil"></span></a></td>
 								<td><a href="/teste/${t.id}/excluir">excluir</a></td>
 							</tr>
 						</c:when>
