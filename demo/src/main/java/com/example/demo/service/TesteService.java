@@ -28,4 +28,8 @@ public class TesteService {
 	public Collection<Teste> obterLista(){
 		return (Collection<Teste>) testeRepository.findAll();
 	}
+	
+    public Teste obterTestePorId(Integer id) {
+        return testeRepository.findById(id).orElse(null);
+    }
 }

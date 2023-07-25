@@ -47,4 +47,34 @@ public class TesteController {
 		return "redirect:/teste/lista";
 	}
 	
+	@GetMapping(value = "/teste/{id}/editar")
+	public String telaEditar(@PathVariable Integer id, Model model) {
+		Teste teste = testeService.obterTestePorId(id);
+		
+			model.addAttribute("testess", teste);
+			
+			return "teste/edicaoteste";
+
+	}
+
+	@PostMapping(value = "/teste/{id}/alterar")
+	public String alterar(@PathVariable Integer id, Teste testeAlterado) {
+		Teste testeExistente = testeService.obterTestePorId(id);
+		if (testeExistente != null) {
+			// Atualiza os atributos do horário existente com os valores do horário alterado
+			testeExistente.setNometeste(testeAlterado.getNometeste());
+			testeExistente.setResumo(testeAlterado.getResumo());
+			testeExistente.setFileData(testeAlterado.getFileData());
+			testeExistente.setLinkgit(testeAlterado.getLinkgit());
+			testeExistente.setEquipe(testeAlterado.getEquipe());
+
+			// Salva as alterações no banco de dados
+			testeService.incluir(testeExistente);
+		} else {
+			// O horário com o ID especificado não foi encontrado, faça algo aqui (por
+			// exemplo, exibir uma mensagem de erro)
+		}
+		return "redirect:/teste/lista";
+	}
+	
 }
