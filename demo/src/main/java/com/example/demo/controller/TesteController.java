@@ -1,67 +1,41 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Teste;
 import com.example.demo.service.TesteService;
 
-
 @Controller
+@RequestMapping(value = "/teste")
 public class TesteController {
-
 
 	@Autowired
 	private TesteService testeService;
 	
-	@GetMapping(value = "/teste")
-	public String telaCadastro() {
-		return "teste/cadastro";
-	}
-	
-	@PostMapping(value = "/teste/incluir")
-	public String incluir(Teste teste) {
-
+	@PostMapping(value = "/incluir")
+	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
 		testeService.incluir(teste);		
-		
-		return "redirect:/";
+		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
 	
-	@GetMapping(value = "/teste/lista")
-	public String telaLista(Model model) {
-		
-		model.addAttribute("testes", testeService.obterLista());
-		
-		return "teste/lista";
+	@GetMapping(value = "/lista")
+	public ResponseEntity<Object> telaLista() {
+		return ResponseEntity.ok(testeService.obterLista());
 	}
 	
-	@GetMapping(value = "/teste/{id}/excluir")
-	public String excluir(@PathVariable Integer id) {
-
+	@DeleteMapping(value = "/{id}/excluir")
+	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
-
-		return "redirect:/teste/lista";
-	}
-	
-	@GetMapping(value = "/teste/{id}/editar")
-	public String telaEditar(@PathVariable Integer id, Model model) {
-		Teste teste = testeService.obterTestePorId(id);
-		
-			model.addAttribute("testess", teste);
-			
-			return "teste/edicaoteste";
-
+		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
-	@PostMapping(value = "/teste/{id}/alterar")
-	public String alterar(@PathVariable Integer id, Teste testeAlterado) {
+	@PostMapping(value = "/{id}/alterar")
+	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
-			// Atualiza os atributos do horário existente com os valores do horário alterado
+			// Atualiza os atributos do teste existente com os valores do teste alterado
 			testeExistente.setNometeste(testeAlterado.getNometeste());
 			testeExistente.setResumo(testeAlterado.getResumo());
 			testeExistente.setFileData(testeAlterado.getFileData());
@@ -70,11 +44,9 @@ public class TesteController {
 
 			// Salva as alterações no banco de dados
 			testeService.incluir(testeExistente);
+			return ResponseEntity.ok("Teste alterado com sucesso!");
 		} else {
-			// O horário com o ID especificado não foi encontrado, faça algo aqui (por
-			// exemplo, exibir uma mensagem de erro)
+			return ResponseEntity.notFound().build();
 		}
-		return "redirect:/teste/lista";
 	}
-	
 }
