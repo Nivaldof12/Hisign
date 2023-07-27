@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trilha Lista</title>
+</head>
+<body>
+<h1>Trilha Lista</h1>
+
+<a href="/trilha">Cadastro</a> <!-- Link to the Cadastro page -->
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Descrição</th>
+    <th>Link</th>
+    <th>Modulo</th>
+    <th>Envio</th>
+
+    <th></th>
+  </tr>
+
+  <th:block th:each="trilha : ${trilhas}">
+    <tr>
+      <td th:text="${trilha.nome_aula}"></td>
+      <td th:text="${trilha.descricao}"></td>
+      <td th:text="${trilha.link_aula}"></td>
+      <td th:text="${trilha.equipe}"></td>
+      <td>
+        <a th:if="${trilha.Resumo_Envio}" th:href="@{'/trilha/' + ${trilha.id} + '/download'}" download>Download</a>
+        <span th:unless="${trilha.Resumo_Envio}"></span>
+      </td>
+      <td>
+        <form th:action="@{'/trilha/' + ${trilha.id} + '/upload'}" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" accept=".pdf,.doc,.docx">
+          <button type="submit">Enviar</button>
+        </form>
+      </td>
+    </tr>
+  </th:block>
+
+</table>
+</body>
+</html>
