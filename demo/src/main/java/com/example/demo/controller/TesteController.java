@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +52,17 @@ public class TesteController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+    @GetMapping("/testes/{id}/pdf")
+    public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
+        Teste teste = testeService.obterTestePorId(id);
+        if (teste != null && teste.getFileData() != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "arquivo.pdf");
+            return new ResponseEntity<>(teste.getFileData(), headers, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

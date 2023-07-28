@@ -13,6 +13,9 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "nomecompleto")
+    private String nomecompleto;
+    
     @Column(name = "entrada")
     private String entrada;
 
@@ -75,5 +78,13 @@ public class Horario {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
- 
+
+	public String getNomecompleto() {
+		return nomecompleto;
+	}
+
+	public void setNomecompleto(String nomecompleto) {
+		this.nomecompleto = nomecompleto;
+	}
+	
 }
