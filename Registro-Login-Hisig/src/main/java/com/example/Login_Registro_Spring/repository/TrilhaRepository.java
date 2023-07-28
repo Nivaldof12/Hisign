@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface TrilhaRepository  extends JpaRepository<Trilha, Integer> {
+    //Modulo select via query
     @Query("SELECT t FROM Trilha t WHERE t.modulo = :modulo")
     List<Trilha> findByModulo(String modulo);
 }

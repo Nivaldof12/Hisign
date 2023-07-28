@@ -32,7 +32,7 @@ public class SpringSecurity {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/users").permitAll()
                                 .requestMatchers("/trilha/add").permitAll()
-                                .requestMatchers("/trilha/lista").permitAll()
+                                .requestMatchers("/trilha/**").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
