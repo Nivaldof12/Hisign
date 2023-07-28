@@ -26,6 +26,6 @@ public class Trilha {
     private byte[] Resumo_Envio;
 
 
-    @Column(name = "equipe")
-    private String equipe;
+    @Column(name = "Modulo")
+    private String modulo;
 }

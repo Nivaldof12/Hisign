@@ -36,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/save")
-    public ResponseEntity<String> registration(@Valid @RequestBody UserDto user) {
+    public ResponseEntity<String> registro(@Valid @RequestBody UserDto user) {
         User existing = userService.findByTelefone(user.getTelefone());
         if (existing != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("uma conta com esse telefone já existe");
@@ -46,7 +46,7 @@ public class AuthController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> listRegisteredUsers() {
+    public ResponseEntity<List<UserDto>> usuariosRegistrados() {
         List<UserDto> users = userService.findAllUsers();
         return ResponseEntity.ok(users);
     }
