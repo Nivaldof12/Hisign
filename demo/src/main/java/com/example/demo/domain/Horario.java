@@ -30,6 +30,12 @@ public class Horario {
 
     @Column(name = "turno")
     private String turno;
+    
+    @Column(name = "horas_trabalhadas_dia")
+    private Double horariototaldiario;
+
+    @Column(name = "horas_trabalhadas_semana")
+    private Double horariototalsemanal;
 
 	public Integer getId() {
 		return id;
@@ -86,5 +92,20 @@ public class Horario {
 	public void setNomecompleto(String nomecompleto) {
 		this.nomecompleto = nomecompleto;
 	}
-	
+
+	public Double getHorariototaldiario() {
+		return horariototaldiario;
+	}
+
+	public void setHorariototaldiario(Double horariototaldiario) {
+		this.horariototaldiario = horariototaldiario;
+	}
+
+	public Double getHorariototalsemanal() {
+		return horariototalsemanal;
+	}
+
+	public void setHorariototalsemanal(Double horariototalsemanal) {
+		this.horariototalsemanal = horariototalsemanal;
+	}
 }
