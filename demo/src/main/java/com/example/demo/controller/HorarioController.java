@@ -31,7 +31,7 @@ public class HorarioController {
 		return ResponseEntity.ok("Horário excluído com sucesso!");
 	}
 
-	@PostMapping(value = "/{id}/alterar")
+	@PutMapping(value = "/{id}/alterar")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {

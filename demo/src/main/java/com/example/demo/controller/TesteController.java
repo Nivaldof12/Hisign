@@ -34,7 +34,7 @@ public class TesteController {
 		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
-	@PostMapping(value = "/{id}/alterar")
+	@PutMapping(value = "/{id}/alterar")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
