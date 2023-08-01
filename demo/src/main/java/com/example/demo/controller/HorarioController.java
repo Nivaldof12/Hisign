@@ -42,6 +42,8 @@ public class HorarioController {
 			horarioExistente.setSaida(horarioAlterado.getSaida());
 			horarioExistente.setObservacao(horarioAlterado.getObservacao());
 			horarioExistente.setTurno(horarioAlterado.getTurno());
+			horarioExistente.setEmpresa(horarioAlterado.getEmpresa());
+			horarioExistente.setSetor(horarioAlterado.getSetor());
 
 			// Salva as alterações no banco de dados
 			horarioService.incluir(horarioExistente);

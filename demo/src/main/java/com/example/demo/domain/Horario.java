@@ -36,6 +36,12 @@ public class Horario {
 
     @Column(name = "horas_trabalhadas_semana")
     private Double horariototalsemanal;
+    
+    @Column(name = "empresa")
+    private String empresa;
+    
+    @Column(name = "setor")
+    private String setor;
 
 	public Integer getId() {
 		return id;
@@ -108,4 +114,20 @@ public class Horario {
 	public void setHorariototalsemanal(Double horariototalsemanal) {
 		this.horariototalsemanal = horariototalsemanal;
 	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}	
 }
