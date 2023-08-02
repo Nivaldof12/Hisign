@@ -53,7 +53,7 @@ public class TesteController {
 		}
 	}
 	
-    @GetMapping("/testes/{id}/pdf")
+    @GetMapping("/{id}/pdf")
     public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
         Teste teste = testeService.obterTestePorId(id);
         if (teste != null && teste.getFileData() != null) {

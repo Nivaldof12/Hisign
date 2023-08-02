@@ -18,7 +18,6 @@ public class HorarioController {
 		this.horarioRepository = horarioRepository;
 	}
 
-
 	@Autowired
 	private HorarioService horarioService;
 
@@ -34,7 +33,6 @@ public class HorarioController {
 		return ResponseEntity.ok(horariosOrdenadosPorNome);
 	}
 
-
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
@@ -46,6 +44,17 @@ public class HorarioController {
 
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {
+			// Atualiza os atributos do horário existente com os valores do horário alterado
+			horarioExistente.setNomecompleto(horarioAlterado.getNomecompleto());
+			horarioExistente.setEntrada(horarioAlterado.getEntrada());
+			horarioExistente.setIntervalo(horarioAlterado.getIntervalo());
+			horarioExistente.setSaida(horarioAlterado.getSaida());
+			horarioExistente.setObservacao(horarioAlterado.getObservacao());
+			horarioExistente.setTurno(horarioAlterado.getTurno());
+			horarioExistente.setEmpresa(horarioAlterado.getEmpresa());
+			horarioExistente.setSetor(horarioAlterado.getSetor());
+			
+			// Salva as alterações no banco de dados
 			horarioService.incluir(horarioExistente);
 			return ResponseEntity.ok("Horário alterado com sucesso!");
 		} else {
@@ -54,10 +63,3 @@ public class HorarioController {
 	}
 
 }
-
-
-
-
-
-
-
