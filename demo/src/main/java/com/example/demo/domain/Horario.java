@@ -11,7 +11,7 @@ import java.sql.Time;
 @Setter
 @Table(name = "horario")
 public class Horario {
-
+//Alterado Double Para TIME
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

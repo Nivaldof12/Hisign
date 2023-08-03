@@ -36,7 +36,7 @@ public class HorarioService {
 		return horarioRepository.findById(id).orElse(null);
 	}
 
-	//Metodo para calcular as horas trabalhadas
+	//Metodo para calcular as horas trabalhadas diárias e semanais
 	@PersistenceContext
 	private EntityManager entityManager;
 
