@@ -55,14 +55,18 @@ public class HorarioController {
 			horarioExistente.setEmpresa(horarioAlterado.getEmpresa());
 			horarioExistente.setSetor(horarioAlterado.getSetor());
 
+			// Calcular as horas trabalhadas diárias e semanais antes de salvar as alterações
+			horarioService.SalvarHorasDia();
+
 			// Salva as alterações no banco de dados
 			horarioService.incluir(horarioExistente);
 			return ResponseEntity.ok("Horário alterado com sucesso!");
 		} else {
 			return ResponseEntity.notFound().build();
 		}
-
 	}
+
+	//Usado Somente para Teste
 	@GetMapping("/salvar-horas-dia")
 	public ResponseEntity<String> salvarHorasDia() {
 		try {
