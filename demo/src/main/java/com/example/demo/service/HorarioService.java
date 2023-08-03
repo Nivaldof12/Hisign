@@ -36,12 +36,7 @@ public class HorarioService {
 		return horarioRepository.findById(id).orElse(null);
 	}
 
-	private double convertStringToHours(String time) {
-		String[] parts = time.split(":");
-		int hours = Integer.parseInt(parts[0]);
-		int minutes = Integer.parseInt(parts[1]);
-		return hours + minutes / 60.0;
-	}
+
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -50,8 +45,8 @@ public class HorarioService {
 	public void SalvarHorasDia() {
 		try {
 			String sql = "UPDATE horario " +
-					"SET horas_trabalhadas_dia = SUBTIME(TIMEDIFF(saida, entrada), '01:00:00'), " +
-					"horas_trabalhadas_semana = TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) / 3600 * 5";
+					"SET horas_trabalhadas_dia = TIME_FORMAT(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00'), '%H:%i:%s'), " +
+					"horas_trabalhadas_semana = TIME_FORMAT(TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) / 3600 * 5, '%H:%i:%s')";
 			entityManager.createNativeQuery(sql).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
