@@ -45,7 +45,7 @@ public class HorarioService {
 		try {
 			String sql = "UPDATE horario " +
 					"SET horas_trabalhadas_dia = TIME_FORMAT(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00'), '%H:%i:%s'), " +
-					"horas_trabalhadas_semana = TIME_FORMAT(TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) / 3600 * 5, '%H:%i:%s')";
+					"horas_trabalhadas_semana = SEC_TO_TIME(TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) * 5)";
 			entityManager.createNativeQuery(sql).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

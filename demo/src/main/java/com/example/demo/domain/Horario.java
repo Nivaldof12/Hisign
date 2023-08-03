@@ -38,7 +38,7 @@ public class Horario {
     private Time horariototaldiario;
 
     @Column(name = "horas_trabalhadas_semana")
-    private Time horariototalsemanal;
+    private String horariototalsemanal;
     
     @Column(name = "empresa")
     private String empresa;
