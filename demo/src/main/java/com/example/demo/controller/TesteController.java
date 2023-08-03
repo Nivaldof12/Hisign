@@ -17,7 +17,7 @@ public class TesteController {
 	@Autowired
 	private TesteService testeService;
 	
-	@PostMapping(value = "/incluir")
+	@PostMapping(value = "/add")
 	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
 		testeService.incluir(teste);		
 		return ResponseEntity.ok("Teste incluído com sucesso!");
@@ -28,7 +28,7 @@ public class TesteController {
 		return ResponseEntity.ok(testeService.obterLista());
 	}
 	
-	@DeleteMapping(value = "/{id}/excluir")
+	@DeleteMapping(value = "/{id}/deletar")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
 		return ResponseEntity.ok("Teste excluído com sucesso!");
@@ -53,7 +53,7 @@ public class TesteController {
 		}
 	}
 	
-    @GetMapping("/{id}/pdf")
+    @GetMapping("/{id}/downloadpdf")
     public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
         Teste teste = testeService.obterTestePorId(id);
         if (teste != null && teste.getFileData() != null) {

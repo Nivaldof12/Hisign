@@ -21,7 +21,7 @@ public class HorarioController {
 	@Autowired
 	private HorarioService horarioService;
 
-	@PostMapping(value = "/incluir")
+	@PostMapping(value = "/add")
 	public ResponseEntity<String> incluir(@RequestBody Horario horario) {
 		horarioService.incluir(horario);
 		return ResponseEntity.ok("Horário incluído com sucesso!");
@@ -33,7 +33,7 @@ public class HorarioController {
 		return ResponseEntity.ok(horariosOrdenadosPorNome);
 	}
 
-	@DeleteMapping(value = "/{id}/excluir")
+	@DeleteMapping(value = "/{id}/deletar")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
 		return ResponseEntity.ok("Horário excluído com sucesso!");
