@@ -44,7 +44,7 @@ public class TrilhaController {
         return new ResponseEntity<>(newTrilha, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/alterar")
     public ResponseEntity<Trilha> updateTrilha(@PathVariable Integer id, @RequestBody Trilha trilha) {
         Trilha existingTrilha = trilhaRepository.findById(id).orElse(null);
         if (existingTrilha != null) {
@@ -56,7 +56,7 @@ public class TrilhaController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/Deletar")
     public ResponseEntity<Void> deleteTrilha(@PathVariable Integer id) {
         Trilha trilha = trilhaRepository.findById(id).orElse(null);
         if (trilha != null) {
