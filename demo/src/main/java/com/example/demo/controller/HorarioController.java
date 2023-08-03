@@ -16,7 +16,7 @@ public class HorarioController {
 	@Autowired
 	private HorarioService horarioService;
 
-	@PostMapping(value = "/incluir")
+	@PostMapping(value = "/add")
 	public ResponseEntity<String> incluir(@RequestBody List<Horario> horarios) {
 		// Salvar os horários recebidos na requisição
 		for (Horario horario : horarios) {
@@ -35,7 +35,7 @@ public class HorarioController {
 		return ResponseEntity.ok(horarioService.obterLista());
 	}
 
-	@DeleteMapping(value = "/{id}/excluir")
+	@DeleteMapping(value = "/{id}/deletar")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
 		return ResponseEntity.ok("Horário excluído com sucesso!");
