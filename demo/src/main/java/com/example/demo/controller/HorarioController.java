@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,16 @@ public class HorarioController {
 			return ResponseEntity.ok("Horário alterado com sucesso!");
 		} else {
 			return ResponseEntity.notFound().build();
+		}
+
+	}
+	@GetMapping("/salvar-horas-dia")
+	public ResponseEntity<String> salvarHorasDia() {
+		try {
+			horarioService.SalvarHorasDia(); // Call the instance method using the service instance
+			return ResponseEntity.ok("Horas do dia salvas com sucesso!");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar horas do dia: " + e.getMessage());
 		}
 	}
 

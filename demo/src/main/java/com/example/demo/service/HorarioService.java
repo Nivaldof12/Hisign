@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.Horario;
 import com.example.demo.repository.HorarioRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service
 public class HorarioService {
 	@Autowired
@@ -61,4 +64,15 @@ public class HorarioService {
         int minutes = Integer.parseInt(parts[1]);
         return hours + minutes / 60.0;
     }
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void SalvarHorasDia()
+	{
+		String sql = "INSERT INTO horario (entrada, saida, horas_trabalhadas_dia) " +
+				"SELECT  entrada, saida, SUBTIME(TIMEDIFF(hora_saida, hora_entrada), '01:00:00') AS horas_trabalhadas " +
+				"FROM horario";
+
+		entityManager.createNativeQuery(sql).executeUpdate();
+	}
 }
