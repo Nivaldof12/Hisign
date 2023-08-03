@@ -10,6 +10,7 @@ import com.example.demo.repository.HorarioRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Service
 public class HorarioService {
@@ -18,30 +19,7 @@ public class HorarioService {
 
 	// Método para salvar um horário
 	public Horario incluir(Horario horario) {
-	    // Cálculo de horariototaldiario
-	    double entrada = convertStringToHours(horario.getEntrada());
-	    double intervalo = convertStringToHours(horario.getIntervalo());
-	    double saida = convertStringToHours(horario.getSaida());
-
-	    // Verifica se o intervalo está entre a entrada e a saída
-	    if (intervalo >= entrada && intervalo <= saida) {
-	        double horariototaldiario = saida - entrada - 1; // Subtrai 1 hora do intervalo
-	        horario.setHorariototaldiario(horariototaldiario);
-	        
-		    // Cálculo de horariototalsemanal
-		    double horariototalsemanal = horariototaldiario * 5;
-		    horario.setHorariototalsemanal(horariototalsemanal);
-		    
-	    } else {
-	        double horariototaldiario = saida - entrada; // Não considera o intervalo
-	        horario.setHorariototaldiario(horariototaldiario);
-	        
-		    // Cálculo de horariototalsemanal
-		    double horariototalsemanal = horariototaldiario * 5;
-		    horario.setHorariototalsemanal(horariototalsemanal);
-	    }
-
-	    return horarioRepository.save(horario);
+		return horarioRepository.save(horario);
 	}
 
 	// Método para excluir um horário com base no ID
@@ -54,25 +32,31 @@ public class HorarioService {
 		return (Collection<Horario>) horarioRepository.findAll();
 	}
 
-    public Horario obterHorarioPorId(Integer id) {
-        return horarioRepository.findById(id).orElse(null);
-    }
-    
-    private double convertStringToHours(String time) {
-        String[] parts = time.split(":");
-        int hours = Integer.parseInt(parts[0]);
-        int minutes = Integer.parseInt(parts[1]);
-        return hours + minutes / 60.0;
-    }
+	public Horario obterHorarioPorId(Integer id) {
+		return horarioRepository.findById(id).orElse(null);
+	}
+
+	private double convertStringToHours(String time) {
+		String[] parts = time.split(":");
+		int hours = Integer.parseInt(parts[0]);
+		int minutes = Integer.parseInt(parts[1]);
+		return hours + minutes / 60.0;
+	}
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void SalvarHorasDia()
-	{
-		String sql = "INSERT INTO horario (entrada, saida, horas_trabalhadas_dia) " +
-				"SELECT  entrada, saida, SUBTIME(TIMEDIFF(hora_saida, hora_entrada), '01:00:00') AS horas_trabalhadas " +
-				"FROM horario";
+	@Transactional
+	public void SalvarHorasDia() {
+		try {
+			String sql = "UPDATE horario " +
+					"SET horas_trabalhadas_dia = SUBTIME(TIMEDIFF(saida, entrada), '01:00:00'), " +
+					"horas_trabalhadas_semana = TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) / 3600 * 5";
+			entityManager.createNativeQuery(sql).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		entityManager.createNativeQuery(sql).executeUpdate();
 	}
 }
+
