@@ -23,7 +23,7 @@ public class HorarioController {
 			horarioService.incluir(horario);
 		}
 
-		// Calcular as horas trabalhadas diárias e semanais para cada registros
+		// Calcular as horas trabalhadas diárias e semanais para cada registro
 		horarioService.SalvarHorasDia();
 
 		return ResponseEntity.ok("Horários incluídos e horas trabalhadas calculadas!");
