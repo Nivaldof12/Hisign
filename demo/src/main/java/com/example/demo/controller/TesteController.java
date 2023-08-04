@@ -41,7 +41,7 @@ public class TesteController {
 			// Atualiza os atributos do teste existente com os valores do teste alterado
 			testeExistente.setNometeste(testeAlterado.getNometeste());
 			testeExistente.setResumo(testeAlterado.getResumo());
-			testeExistente.setFileData(testeAlterado.getFileData());
+			testeExistente.setFile_data(testeAlterado.getFile_data());
 			testeExistente.setLinkgit(testeAlterado.getLinkgit());
 			testeExistente.setEquipe(testeAlterado.getEquipe());
 
@@ -56,11 +56,11 @@ public class TesteController {
     @GetMapping("/{id}/downloadpdf")
     public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
         Teste teste = testeService.obterTestePorId(id);
-        if (teste != null && teste.getFileData() != null) {
+        if (teste != null && teste.getFile_data() != null) {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDispositionFormData("attachment", "arquivo.pdf");
-            return new ResponseEntity<>(teste.getFileData(), headers, HttpStatus.OK);
+            return new ResponseEntity<>(teste.getFile_data(), headers, HttpStatus.OK);
         } else {
             return ResponseEntity.notFound().build();
         }

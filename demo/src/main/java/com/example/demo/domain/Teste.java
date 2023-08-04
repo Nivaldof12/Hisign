@@ -24,7 +24,7 @@ public class Teste {
 
     @Lob
     @Column(name = "file_data")
-    private byte[] fileData;
+    private byte[] file_data;
 
     @Column(name = "linkgit")
     private String linkgit;
@@ -56,12 +56,12 @@ public class Teste {
 		this.resumo = resumo;
 	}
 
-	public byte[] getFileData() {
-		return fileData;
+	public byte[] getFile_data() {
+		return file_data;
 	}
 
-	public void setFileData(byte[] fileData) {
-		this.fileData = fileData;
+	public void setFile_data(byte[] file_data) {
+		this.file_data = file_data;
 	}
 
 	public String getLinkgit() {
