@@ -65,7 +65,7 @@ public class TesteController {
 		}
 	}
 
-	@PostMapping("/{id}/upload")
+	@PostMapping("/{id}/uploadpdf")
 	public ResponseEntity<Map<String, String>> uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
 		Teste teste = testeService.obterTestePorId(id);
 		if (teste != null) {
