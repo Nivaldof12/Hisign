@@ -12,18 +12,25 @@ import com.example.demo.service.TesteService;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping(value = "/teste")
 public class TesteController {
 
-	@Autowired
-	private TesteService testeService;
+	private final TesteService testeService;
+
+	public TesteController(TesteService testeService) {
+		this.testeService = testeService;
+	}
 
 	@PostMapping(value = "/add")
-	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
+	public ResponseEntity<Map<String, String>> incluir(@RequestBody Teste teste) {
 		testeService.incluir(teste);
-		return ResponseEntity.ok("Teste incluído com sucesso!");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "Teste incluído com sucesso!");
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping(value = "/lista")
@@ -32,25 +39,52 @@ public class TesteController {
 	}
 
 	@DeleteMapping(value = "/{id}/deletar")
-	public ResponseEntity<String> excluir(@PathVariable Integer id) {
+	public ResponseEntity<Map<String, String>> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
-		return ResponseEntity.ok("Teste excluído com sucesso!");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "Teste excluído com sucesso!");
+		return ResponseEntity.ok(response);
 	}
 
 	@PutMapping(value = "/{id}/alterar")
-	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
+	public ResponseEntity<Map<String, String>> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
-			// Atualiza os atributos do teste existente com os valores do teste alterado
+			// Update the existing teste with values from testeAlterado
 			testeExistente.setNometeste(testeAlterado.getNometeste());
 			testeExistente.setResumo(testeAlterado.getResumo());
-			testeExistente.setFile_data(testeAlterado.getFile_data());
 			testeExistente.setLinkgit(testeAlterado.getLinkgit());
 			testeExistente.setEquipe(testeAlterado.getEquipe());
 
-			// Salva as alterações no banco de dados
+			// Save the changes to the database
 			testeService.incluir(testeExistente);
-			return ResponseEntity.ok("Teste alterado com sucesso!");
+
+			Map<String, String> response = new HashMap<>();
+			response.put("message", "Teste alterado com sucesso!");
+			return ResponseEntity.ok(response);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping("/{id}/upload")
+	public ResponseEntity<Map<String, String>> uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+		Teste teste = testeService.obterTestePorId(id);
+		if (teste != null) {
+			try {
+				// Set the file data in the Teste object
+				teste.setFile_data(file.getBytes());
+
+				// Save the changes to the database
+				testeService.incluir(teste);
+
+				Map<String, String> response = new HashMap<>();
+				response.put("message", "Arquivo enviado com sucesso!");
+				return ResponseEntity.ok(response);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -64,25 +98,6 @@ public class TesteController {
 			headers.setContentType(MediaType.APPLICATION_PDF);
 			headers.setContentDispositionFormData("attachment", "arquivo.pdf");
 			return new ResponseEntity<>(teste.getFile_data(), headers, HttpStatus.OK);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-//
-	@PostMapping(value = "/{id}/uploadpdf")
-	public ResponseEntity<String> uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
-		Teste teste = testeService.obterTestePorId(id);
-		if (teste != null) {
-			try {
-				teste.setFile_data(file.getBytes());
-
-				testeService.incluir(teste);
-
-				return ResponseEntity.ok("Arquivo enviado com sucesso!");
-			} catch (IOException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Falha ao enviar o arquivo.");
-			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}
