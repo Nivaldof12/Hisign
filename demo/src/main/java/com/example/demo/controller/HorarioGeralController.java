@@ -20,7 +20,7 @@ public class HorarioGeralController {
     @Autowired
     private  HorarioGeralService horarioGeralService;
 
-    @PostMapping(value = "/incluir")
+    @PostMapping(value = "/add")
     public ResponseEntity<String> incluir(@RequestBody HorarioGeral horarioGeral) {
         horarioGeralService.Incluir(horarioGeral);
         return ResponseEntity.ok("Horário Geral incluído com sucesso!");
@@ -30,7 +30,7 @@ public class HorarioGeralController {
         HorarioGeral horarioGeral = horarioGeralService.ObterTodos();
         return ResponseEntity.ok(horarioGeral);
     }
-    @DeleteMapping(value = "/{id}/excluir")
+    @DeleteMapping(value = "/{id}/deletar")
     public ResponseEntity<String> excluir(@PathVariable Integer id) {
         horarioGeralService.Excluir(id);
         return ResponseEntity.ok("Horário Geral excluído com sucesso!");
