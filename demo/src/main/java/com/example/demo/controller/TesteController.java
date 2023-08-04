@@ -50,13 +50,11 @@ public class TesteController {
 	public ResponseEntity<Map<String, String>> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
-			// Update the existing teste with values from testeAlterado
 			testeExistente.setNometeste(testeAlterado.getNometeste());
 			testeExistente.setResumo(testeAlterado.getResumo());
 			testeExistente.setLinkgit(testeAlterado.getLinkgit());
 			testeExistente.setEquipe(testeAlterado.getEquipe());
 
-			// Save the changes to the database
 			testeService.incluir(testeExistente);
 
 			Map<String, String> response = new HashMap<>();
@@ -72,11 +70,9 @@ public class TesteController {
 		Teste teste = testeService.obterTestePorId(id);
 		if (teste != null) {
 			try {
-				// Set the file data in the Teste object
 				teste.setFile_data(file.getBytes());
 
-				// Save the changes to the database
-				testeService.incluir(teste);
+				testeService.atualizar(teste);
 
 				Map<String, String> response = new HashMap<>();
 				response.put("message", "Arquivo enviado com sucesso!");
@@ -89,6 +85,7 @@ public class TesteController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
 
 	@GetMapping("/{id}/downloadpdf")
 	public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {

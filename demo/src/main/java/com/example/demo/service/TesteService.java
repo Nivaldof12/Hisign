@@ -32,4 +32,8 @@ public class TesteService {
     public Teste obterTestePorId(Integer id) {
         return testeRepository.findById(id).orElse(null);
     }
+
+    public Teste atualizar(Teste teste) {
+        return testeRepository.save(teste);
+    }
 }
