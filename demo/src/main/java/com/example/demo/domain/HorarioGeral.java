@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Entity
 @Getter
@@ -27,6 +28,9 @@ public class HorarioGeral {
     @Column(name = "saida_Segunda")
     private String saida_Segunda;
 
+    @Column(name = "horas_trabalhadas_segunda")
+    private Time horariototalsegunda;
+
     @Column(name = "entrada_Terca")
     private String entrada_Terca;
 
@@ -35,6 +39,9 @@ public class HorarioGeral {
 
     @Column(name = "saida_Terca")
     private String saida_Terca;
+
+    @Column(name = "horas_trabalhadas_terca")
+    private Time horariototalterca;
 
     @Column(name = "entrada_Quarta")
     private String entrada_Quarta;
@@ -45,6 +52,9 @@ public class HorarioGeral {
     @Column(name = "saida_Quarta")
     private String saida_Quarta;
 
+    @Column(name = "horas_trabalhadas_quarta")
+    private Time horariototalquarta;
+
     @Column(name = "entrada_Quinta")
     private String entrada_Quinta;
 
@@ -53,6 +63,9 @@ public class HorarioGeral {
 
     @Column(name = "saida_Quinta")
     private String saida_Quinta;
+
+    @Column(name = "horas_trabalhadas_quinta")
+    private Time horariototalquinta;
 
     @Column(name = "entrada_Sexta")
     private String entrada_Sexta;
@@ -63,6 +76,9 @@ public class HorarioGeral {
     @Column(name = "saida_Sexta")
     private String saida_Sexta;
 
+    @Column(name = "horas_trabalhadas_sexta")
+    private Time horariototalsexta;
+
     @Column(name = "entrada_Sabado")
     private String entrada_Sabado;
 
@@ -71,5 +87,11 @@ public class HorarioGeral {
 
     @Column(name = "saida_Sabado")
     private String saida_Sabado;
+
+    @Column(name = "horas_trabalhadas_sabado")
+    private Time horariototalsabado;
+
+    @Column(name = "total_horas_trabalhadas_semana")
+    private Time horariototalsemanal;
 
 }

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Teste;
 import com.example.demo.service.TesteService;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/teste")
@@ -16,18 +19,18 @@ public class TesteController {
 
 	@Autowired
 	private TesteService testeService;
-	
+
 	@PostMapping(value = "/add")
 	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
-		testeService.incluir(teste);		
+		testeService.incluir(teste);
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
-	
+
 	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(testeService.obterLista());
 	}
-	
+
 	@DeleteMapping(value = "/{id}/deletar")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
@@ -52,17 +55,36 @@ public class TesteController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
-    @GetMapping("/{id}/downloadpdf")
-    public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
-        Teste teste = testeService.obterTestePorId(id);
-        if (teste != null && teste.getFile_data() != null) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.setContentDispositionFormData("attachment", "arquivo.pdf");
-            return new ResponseEntity<>(teste.getFile_data(), headers, HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
+	@GetMapping("/{id}/downloadpdf")
+	public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
+		Teste teste = testeService.obterTestePorId(id);
+		if (teste != null && teste.getFile_data() != null) {
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_PDF);
+			headers.setContentDispositionFormData("attachment", "arquivo.pdf");
+			return new ResponseEntity<>(teste.getFile_data(), headers, HttpStatus.OK);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping(value = "/{id}/uploadpdf")
+	public ResponseEntity<String> uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
+		Teste teste = testeService.obterTestePorId(id);
+		if (teste != null) {
+			try {
+				teste.setFile_data(file.getBytes());
+
+				testeService.incluir(teste);
+
+				return ResponseEntity.ok("Arquivo enviado com sucesso!");
+			} catch (IOException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Falha ao enviar o arquivo.");
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }
