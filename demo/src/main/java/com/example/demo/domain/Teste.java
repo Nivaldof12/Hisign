@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "teste")
+@Getter
+@Setter
 public class Teste {
 
     @Id
@@ -22,61 +26,22 @@ public class Teste {
     @Column(name = "resumo")
     private String resumo;
 
-    @Lob
-    @Column(name = "file_data")
-    private byte[] file_data;
+	@Column(name = "linkgit")
+	private String linkgit;
 
-    @Column(name = "linkgit")
-    private String linkgit;
-    
-    @Column(name = "equipe")
-    private String equipe;
-    
-	public Integer getId() {
-		return id;
-	}
+	@Column(name = "equipe")
+	private String equipe;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	private String docName;
+	private String docType;
 
-	public String getNometeste() {
-		return nometeste;
-	}
+	@Lob
+    private byte[] data;
 
-	public void setNometeste(String nometeste) {
-		this.nometeste = nometeste;
-	}
 
-	public String getResumo() {
-		return resumo;
-	}
-
-	public void setResumo(String resumo) {
-		this.resumo = resumo;
-	}
-
-	public byte[] getFile_data() {
-		return file_data;
-	}
-
-	public void setFile_data(byte[] file_data) {
-		this.file_data = file_data;
-	}
-
-	public String getLinkgit() {
-		return linkgit;
-	}
-
-	public void setLinkgit(String linkgit) {
-		this.linkgit = linkgit;
-	}
-
-	public String getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(String equipe) {
-		this.equipe = equipe;
+	public Teste(String docName, String contentType, byte[] data) {
+		this.docName = docName;
+		this.docType = contentType;
+		this.data = data;
 	}
 }

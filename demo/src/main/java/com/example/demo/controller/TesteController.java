@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,12 +14,14 @@ import com.example.demo.domain.Teste;
 import com.example.demo.service.TesteService;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/teste")
+@CrossOrigin
 public class TesteController {
 
 	private final TesteService testeService;
@@ -26,12 +31,11 @@ public class TesteController {
 	}
 
 	@PostMapping(value = "/add")
-	public ResponseEntity<Map<String, String>> incluir(@RequestBody Teste teste) {
-		testeService.incluir(teste);
-		Map<String, String> response = new HashMap<>();
-		response.put("message", "Teste incluído com sucesso!");
-		return ResponseEntity.ok(response);
+	public ResponseEntity<Teste> incluir(@RequestBody Teste teste) {
+		Teste novoTeste = testeService.incluir(teste);
+		return new ResponseEntity<>(novoTeste, HttpStatus.CREATED);
 	}
+
 
 	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
@@ -65,38 +69,20 @@ public class TesteController {
 		}
 	}
 
-	@PostMapping("/{id}/uploadpdf")
-	public ResponseEntity<Map<String, String>> uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) {
-		Teste teste = testeService.obterTestePorId(id);
-		if (teste != null) {
-			try {
-				teste.setFile_data(file.getBytes());
-
-				testeService.atualizar(teste);
-
-				Map<String, String> response = new HashMap<>();
-				response.put("message", "Arquivo enviado com sucesso!");
-				return ResponseEntity.ok(response);
-			} catch (IOException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
-		} else {
-			return ResponseEntity.notFound().build();
+	@PostMapping(value = "/uploadpdf")
+	public String uploadFile(@RequestParam("file") MultipartFile[] file) {
+		for (MultipartFile files : file) {
+			testeService.saveFile(files);
 		}
+		return "redirect:/";
 	}
-
-
-	@GetMapping("/{id}/downloadpdf")
-	public ResponseEntity<byte[]> downloadPDF(@PathVariable Integer id) {
-		Teste teste = testeService.obterTestePorId(id);
-		if (teste != null && teste.getFile_data() != null) {
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_PDF);
-			headers.setContentDispositionFormData("attachment", "arquivo.pdf");
-			return new ResponseEntity<>(teste.getFile_data(), headers, HttpStatus.OK);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+	@GetMapping(value = "/downloadpdf/{fileId}")
+	public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Integer fileId) {
+		Teste teste = testeService.getFile(fileId).get();
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(teste.getDocType()))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + teste.getDocName() + "\"")
+				.body(new ByteArrayResource(teste.getData()));
 	}
 }
+
