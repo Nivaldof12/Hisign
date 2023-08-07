@@ -37,9 +37,6 @@ public class HorarioController {
 		if (horarioExistente != null) {
 			// Atualiza os atributos do horário existente com os valores do horário alterado
 			horarioExistente.setNomecompleto(horarioAlterado.getNomecompleto());
-			horarioExistente.setEntrada(horarioAlterado.getEntrada());
-			horarioExistente.setIntervalo(horarioAlterado.getIntervalo());
-			horarioExistente.setSaida(horarioAlterado.getSaida());
 			horarioExistente.setObservacao(horarioAlterado.getObservacao());
 			horarioExistente.setTurno(horarioAlterado.getTurno());
 			horarioExistente.setEmpresa(horarioAlterado.getEmpresa());

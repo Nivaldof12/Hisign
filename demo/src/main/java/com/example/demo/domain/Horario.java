@@ -9,39 +9,101 @@ import javax.persistence.Id;
 @Entity
 public class Horario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "nomecompleto")
-    private String nomecompleto;
-    
-    @Column(name = "entrada")
-    private String entrada;
+	@Column(name = "nomecompleto")
+	private String nomecompleto;
 
-    @Column(name = "intervalo")
-    private String intervalo;
+	@Column(name = "entrada_Segunda")
+	private String entrada_Segunda;
 
-    @Column(name = "saida")
-    private String saida;
+	@Column(name = "intervalo_Segunda")
+	private String intervalo_Segunda;
 
-    @Column(name = "observacao")
-    private String observacao;
+	@Column(name = "saida_Segunda")
+	private String saida_Segunda;
+	
+	@Column(name = "horas_dia_Segunda")
+	private Double horas_dia_Segunda;
 
-    @Column(name = "turno")
-    private String turno;
-    
-    @Column(name = "horas_trabalhadas_dia")
-    private Double horariototaldiario;
+	@Column(name = "entrada_Terca")
+	private String entrada_Terca;
 
-    @Column(name = "horas_trabalhadas_semana")
-    private Double horariototalsemanal;
-    
-    @Column(name = "empresa")
-    private String empresa;
-    
-    @Column(name = "setor")
-    private String setor;
+	@Column(name = "intervalo_Terca")
+	private String intervalo_Terca;
+
+	@Column(name = "saida_Terca")
+	private String saida_Terca;
+	
+	@Column(name = "horas_dia_Terca")
+	private Double horas_dia_Terca;
+
+	@Column(name = "entrada_Quarta")
+	private String entrada_Quarta;
+
+	@Column(name = "intervalo_Quarta")
+	private String intervalo_Quarta;
+
+	@Column(name = "saida_Quarta")
+	private String saida_Quarta;
+	
+	@Column(name = "horas_dia_Quarta")
+	private Double horas_dia_Quarta;
+
+	@Column(name = "entrada_Quinta")
+	private String entrada_Quinta;
+
+	@Column(name = "intervalo_Quinta")
+	private String intervalo_Quinta;
+
+	@Column(name = "saida_Quinta")
+	private String saida_Quinta;
+	
+	@Column(name = "horas_dia_Quinta")
+	private Double horas_dia_Quinta;
+
+	@Column(name = "entrada_Sexta")
+	private String entrada_Sexta;
+
+	@Column(name = "intervalo_Sexta")
+	private String intervalo_Sexta;
+
+	@Column(name = "saida_Sexta")
+	private String saida_Sexta;
+	
+	@Column(name = "horas_dia_Sexta")
+	private Double horas_dia_Sexta;
+
+	@Column(name = "entrada_Sabado")
+	private String entrada_Sabado;
+
+	@Column(name = "intervalo_Sabado")
+	private String intervalo_Sabado;
+
+	@Column(name = "saida_Sabado")
+	private String saida_Sabado;
+	
+	@Column(name = "horas_dia_Sabado")
+	private Double horas_dia_Sabado;
+
+	@Column(name = "observacao")
+	private String observacao;
+
+	@Column(name = "turno")
+	private String turno;
+
+	@Column(name = "horas_trabalhadas_semana")
+	private Double horariototalsemanal;
+
+	@Column(name = "empresa")
+	private String empresa;
+
+	@Column(name = "setor")
+	private String setor;
+	
+	// Getters and Setters
 
 	public Integer getId() {
 		return id;
@@ -51,28 +113,204 @@ public class Horario {
 		this.id = id;
 	}
 
-	public String getEntrada() {
-		return entrada;
+	public String getNomecompleto() {
+		return nomecompleto;
 	}
 
-	public void setEntrada(String entrada) {
-		this.entrada = entrada;
+	public void setNomecompleto(String nomecompleto) {
+		this.nomecompleto = nomecompleto;
 	}
 
-	public String getIntervalo() {
-		return intervalo;
+	public String getEntrada_Segunda() {
+		return entrada_Segunda;
 	}
 
-	public void setIntervalo(String intervalo) {
-		this.intervalo = intervalo;
+	public void setEntrada_Segunda(String entrada_Segunda) {
+		this.entrada_Segunda = entrada_Segunda;
 	}
 
-	public String getSaida() {
-		return saida;
+	public String getIntervalo_Segunda() {
+		return intervalo_Segunda;
 	}
 
-	public void setSaida(String saida) {
-		this.saida = saida;
+	public void setIntervalo_Segunda(String intervalo_Segunda) {
+		this.intervalo_Segunda = intervalo_Segunda;
+	}
+
+	public String getSaida_Segunda() {
+		return saida_Segunda;
+	}
+
+	public void setSaida_Segunda(String saida_Segunda) {
+		this.saida_Segunda = saida_Segunda;
+	}
+
+	public Double getHoras_dia_Segunda() {
+		return horas_dia_Segunda;
+	}
+
+	public void setHoras_dia_Segunda(Double horas_dia_Segunda) {
+		this.horas_dia_Segunda = horas_dia_Segunda;
+	}
+
+	public String getEntrada_Terca() {
+		return entrada_Terca;
+	}
+
+	public void setEntrada_Terca(String entrada_Terca) {
+		this.entrada_Terca = entrada_Terca;
+	}
+
+	public String getIntervalo_Terca() {
+		return intervalo_Terca;
+	}
+
+	public void setIntervalo_Terca(String intervalo_Terca) {
+		this.intervalo_Terca = intervalo_Terca;
+	}
+
+	public String getSaida_Terca() {
+		return saida_Terca;
+	}
+
+	public void setSaida_Terca(String saida_Terca) {
+		this.saida_Terca = saida_Terca;
+	}
+
+	public Double getHoras_dia_Terca() {
+		return horas_dia_Terca;
+	}
+
+	public void setHoras_dia_Terca(Double horas_dia_Terca) {
+		this.horas_dia_Terca = horas_dia_Terca;
+	}
+
+	public String getEntrada_Quarta() {
+		return entrada_Quarta;
+	}
+
+	public void setEntrada_Quarta(String entrada_Quarta) {
+		this.entrada_Quarta = entrada_Quarta;
+	}
+
+	public String getIntervalo_Quarta() {
+		return intervalo_Quarta;
+	}
+
+	public void setIntervalo_Quarta(String intervalo_Quarta) {
+		this.intervalo_Quarta = intervalo_Quarta;
+	}
+
+	public String getSaida_Quarta() {
+		return saida_Quarta;
+	}
+
+	public void setSaida_Quarta(String saida_Quarta) {
+		this.saida_Quarta = saida_Quarta;
+	}
+
+	public Double getHoras_dia_Quarta() {
+		return horas_dia_Quarta;
+	}
+
+	public void setHoras_dia_Quarta(Double horas_dia_Quarta) {
+		this.horas_dia_Quarta = horas_dia_Quarta;
+	}
+
+	public String getEntrada_Quinta() {
+		return entrada_Quinta;
+	}
+
+	public void setEntrada_Quinta(String entrada_Quinta) {
+		this.entrada_Quinta = entrada_Quinta;
+	}
+
+	public String getIntervalo_Quinta() {
+		return intervalo_Quinta;
+	}
+
+	public void setIntervalo_Quinta(String intervalo_Quinta) {
+		this.intervalo_Quinta = intervalo_Quinta;
+	}
+
+	public String getSaida_Quinta() {
+		return saida_Quinta;
+	}
+
+	public void setSaida_Quinta(String saida_Quinta) {
+		this.saida_Quinta = saida_Quinta;
+	}
+
+	public Double getHoras_dia_Quinta() {
+		return horas_dia_Quinta;
+	}
+
+	public void setHoras_dia_Quinta(Double horas_dia_Quinta) {
+		this.horas_dia_Quinta = horas_dia_Quinta;
+	}
+
+	public String getEntrada_Sexta() {
+		return entrada_Sexta;
+	}
+
+	public void setEntrada_Sexta(String entrada_Sexta) {
+		this.entrada_Sexta = entrada_Sexta;
+	}
+
+	public String getIntervalo_Sexta() {
+		return intervalo_Sexta;
+	}
+
+	public void setIntervalo_Sexta(String intervalo_Sexta) {
+		this.intervalo_Sexta = intervalo_Sexta;
+	}
+
+	public String getSaida_Sexta() {
+		return saida_Sexta;
+	}
+
+	public void setSaida_Sexta(String saida_Sexta) {
+		this.saida_Sexta = saida_Sexta;
+	}
+
+	public Double getHoras_dia_Sexta() {
+		return horas_dia_Sexta;
+	}
+
+	public void setHoras_dia_Sexta(Double horas_dia_Sexta) {
+		this.horas_dia_Sexta = horas_dia_Sexta;
+	}
+
+	public String getEntrada_Sabado() {
+		return entrada_Sabado;
+	}
+
+	public void setEntrada_Sabado(String entrada_Sabado) {
+		this.entrada_Sabado = entrada_Sabado;
+	}
+
+	public String getIntervalo_Sabado() {
+		return intervalo_Sabado;
+	}
+
+	public void setIntervalo_Sabado(String intervalo_Sabado) {
+		this.intervalo_Sabado = intervalo_Sabado;
+	}
+
+	public String getSaida_Sabado() {
+		return saida_Sabado;
+	}
+
+	public void setSaida_Sabado(String saida_Sabado) {
+		this.saida_Sabado = saida_Sabado;
+	}
+
+	public Double getHoras_dia_Sabado() {
+		return horas_dia_Sabado;
+	}
+
+	public void setHoras_dia_Sabado(Double horas_dia_Sabado) {
+		this.horas_dia_Sabado = horas_dia_Sabado;
 	}
 
 	public String getObservacao() {
@@ -89,22 +327,6 @@ public class Horario {
 
 	public void setTurno(String turno) {
 		this.turno = turno;
-	}
-
-	public String getNomecompleto() {
-		return nomecompleto;
-	}
-
-	public void setNomecompleto(String nomecompleto) {
-		this.nomecompleto = nomecompleto;
-	}
-
-	public Double getHorariototaldiario() {
-		return horariototaldiario;
-	}
-
-	public void setHorariototaldiario(Double horariototaldiario) {
-		this.horariototaldiario = horariototaldiario;
 	}
 
 	public Double getHorariototalsemanal() {
@@ -129,5 +351,5 @@ public class Horario {
 
 	public void setSetor(String setor) {
 		this.setor = setor;
-	}	
+	}
 }
