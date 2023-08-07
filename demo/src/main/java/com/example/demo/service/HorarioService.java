@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.Horario;
 import com.example.demo.repository.HorarioRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 @Service
 public class HorarioService {
 	@Autowired
@@ -19,7 +15,30 @@ public class HorarioService {
 
 	// Método para salvar um horário
 	public Horario incluir(Horario horario) {
-		return horarioRepository.save(horario);
+	    // Cálculo de horariototaldiario
+	    double entrada = convertStringToHours(horario.getEntrada());
+	    double intervalo = convertStringToHours(horario.getIntervalo());
+	    double saida = convertStringToHours(horario.getSaida());
+
+	    // Verifica se o intervalo está entre a entrada e a saída
+	    if (intervalo >= entrada && intervalo <= saida) {
+	        double horariototaldiario = saida - entrada - 1; // Subtrai 1 hora do intervalo
+	        horario.setHorariototaldiario(horariototaldiario);
+	        
+		    // Cálculo de horariototalsemanal
+		    double horariototalsemanal = horariototaldiario * 5;
+		    horario.setHorariototalsemanal(horariototalsemanal);
+		    
+	    } else {
+	        double horariototaldiario = saida - entrada; // Não considera o intervalo
+	        horario.setHorariototaldiario(horariototaldiario);
+	        
+		    // Cálculo de horariototalsemanal
+		    double horariototalsemanal = horariototaldiario * 5;
+		    horario.setHorariototalsemanal(horariototalsemanal);
+	    }
+
+	    return horarioRepository.save(horario);
 	}
 
 	// Método para excluir um horário com base no ID
@@ -32,25 +51,14 @@ public class HorarioService {
 		return (Collection<Horario>) horarioRepository.findAll();
 	}
 
-	public Horario obterHorarioPorId(Integer id) {
-		return horarioRepository.findById(id).orElse(null);
-	}
-
-	//Metodo para calcular as horas trabalhadas diárias e semanais
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	@Transactional
-	public void SalvarHorasDia() {
-		try {
-			String sql = "UPDATE horario " +
-					"SET horas_trabalhadas_dia = TIME_FORMAT(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00'), '%H:%i:%s'), " +
-					"horas_trabalhadas_semana = SEC_TO_TIME(TIME_TO_SEC(SUBTIME(TIMEDIFF(saida, entrada), '01:00:00')) * 5)";
-			entityManager.createNativeQuery(sql).executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+    public Horario obterHorarioPorId(Integer id) {
+        return horarioRepository.findById(id).orElse(null);
+    }
+    
+    private double convertStringToHours(String time) {
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+        return hours + minutes / 60.0;
+    }
 }
-
