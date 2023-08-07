@@ -29,7 +29,6 @@ public class HorarioController {
 		return ResponseEntity.ok("Horários incluídos e horas trabalhadas calculadas!");
 	}
 
-
 	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(horarioService.obterLista());
@@ -55,7 +54,8 @@ public class HorarioController {
 			horarioExistente.setEmpresa(horarioAlterado.getEmpresa());
 			horarioExistente.setSetor(horarioAlterado.getSetor());
 
-			// Calcular as horas trabalhadas diárias e semanais antes de salvar as alterações
+			// Calcular as horas trabalhadas diárias e semanais antes de salvar as
+			// alterações
 			horarioService.SalvarHorasDia();
 
 			// Salva as alterações no banco de dados
@@ -66,14 +66,15 @@ public class HorarioController {
 		}
 	}
 
-	//Usado Somente para Teste
+	// Usado Somente para Teste
 	@GetMapping("/salvar-horas-dia")
 	public ResponseEntity<String> salvarHorasDia() {
 		try {
 			horarioService.SalvarHorasDia();
 			return ResponseEntity.ok("Horas do dia salvas com sucesso!");
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar horas do dia: " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Erro ao salvar horas do dia: " + e.getMessage());
 		}
 	}
 
