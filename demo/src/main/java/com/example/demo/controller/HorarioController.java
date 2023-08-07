@@ -42,6 +42,7 @@ public class HorarioController {
 
 	@PutMapping(value = "/{id}/alterar")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
+		
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {
 			// Atualiza os atributos do horário existente com os valores do horário alterado
