@@ -20,26 +20,36 @@ public class HorarioService {
 		return horarioRepository.save(horario);
 	}
 
-    private Horario calcularHorasTrabalho(Horario horario) {
-        horario.setHoras_dia_Segunda(calcularHorasDia(horario.getEntrada_Segunda(), horario.getIntervalo_Segunda(), horario.getSaida_Segunda()));
-        horario.setHoras_dia_Terca(calcularHorasDia(horario.getEntrada_Terca(), horario.getIntervalo_Terca(), horario.getSaida_Terca()));
-        horario.setHoras_dia_Quarta(calcularHorasDia(horario.getEntrada_Quarta(), horario.getIntervalo_Quarta(), horario.getSaida_Quarta()));
-        horario.setHoras_dia_Quinta(calcularHorasDia(horario.getEntrada_Quinta(), horario.getIntervalo_Quinta(), horario.getSaida_Quinta()));
-        horario.setHoras_dia_Sexta(calcularHorasDia(horario.getEntrada_Sexta(), horario.getIntervalo_Sexta(), horario.getSaida_Sexta()));
-        horario.setHoras_dia_Sabado(calcularHorasDia(horario.getEntrada_Sabado(), horario.getIntervalo_Sabado(), horario.getSaida_Sabado()));
+	private Horario calcularHorasTrabalho(Horario horario) {
+		horario.setHoras_dia_Segunda(calcularHorasDia(horario.getEntrada_Segunda(), horario.getIntervalo_Segunda(),
+				horario.getSaida_Segunda()));
+		horario.setHoras_dia_Terca(
+				calcularHorasDia(horario.getEntrada_Terca(), horario.getIntervalo_Terca(), horario.getSaida_Terca()));
+		horario.setHoras_dia_Quarta(calcularHorasDia(horario.getEntrada_Quarta(), horario.getIntervalo_Quarta(),
+				horario.getSaida_Quarta()));
+		horario.setHoras_dia_Quinta(calcularHorasDia(horario.getEntrada_Quinta(), horario.getIntervalo_Quinta(),
+				horario.getSaida_Quinta()));
+		horario.setHoras_dia_Sexta(
+				calcularHorasDia(horario.getEntrada_Sexta(), horario.getIntervalo_Sexta(), horario.getSaida_Sexta()));
+		horario.setHoras_dia_Sabado(calcularHorasDia(horario.getEntrada_Sabado(), horario.getIntervalo_Sabado(),
+				horario.getSaida_Sabado()));
 
-        double horasTotalSemana = horario.getHoras_dia_Segunda() + horario.getHoras_dia_Terca() +
-                                 horario.getHoras_dia_Quarta() + horario.getHoras_dia_Quinta() +
-                                 horario.getHoras_dia_Sexta() + horario.getHoras_dia_Sabado();
+		double horasTotalSemana = horario.getHoras_dia_Segunda() + horario.getHoras_dia_Terca()
+				+ horario.getHoras_dia_Quarta() + horario.getHoras_dia_Quinta() + horario.getHoras_dia_Sexta()
+				+ horario.getHoras_dia_Sabado();
 
-        horario.setHorariototalsemanal(horasTotalSemana);
+		horario.setHorariototalsemanal(horasTotalSemana);
 
-        return horario;
-    }
+		return horario;
+	}
 
 	private double calcularHorasDia(String entrada, String intervalo, String saida) {
-		if (entrada == null || intervalo == null || saida == null || entrada.isEmpty() || intervalo.isEmpty() || saida.isEmpty()) {
-			return 0; // Retornar 0 se qualquer um dos campos for nulo
+		if (entrada == null || saida == null || entrada.isEmpty() || saida.isEmpty()) {
+			return 0; // Retorna 0 se a entrada ou a saída forem nulas ou vazias
+		}
+
+		if (intervalo == null || intervalo.isEmpty()) {
+			return calcularHorasSemIntervalo(entrada, saida);
 		}
 
 		double entradaHora = convertStringToHours(entrada);
@@ -49,9 +59,16 @@ public class HorarioService {
 		if (intervaloHora >= entradaHora && intervaloHora <= saidaHora) {
 			return saidaHora - entradaHora - 1;
 		} else {
-			return saidaHora - entradaHora;
+			return calcularHorasSemIntervalo(entrada, saida);
 		}
 	}
+	
+	// Método para calcular a entrada e a saída se o intervalo for null
+    private double calcularHorasSemIntervalo(String entrada, String saida) {
+        double entradaHora = convertStringToHours(entrada);
+        double saidaHora = convertStringToHours(saida);
+        return saidaHora - entradaHora;
+    }
 
 	// Método para excluir um horário com base no ID
 	public void excluirHorarioPorId(Integer id) {
