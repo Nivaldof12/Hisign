@@ -1,5 +1,8 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,73 +13,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "teste")
+@Getter
+@Setter
 public class Teste {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "nometeste")
-    private String nometeste;
-    
-    @Column(name = "resumo")
-    private String resumo;
+	@Column(name = "nometeste")
+	private String nometeste;
 
-    @Lob
-    @Column(name = "file_data")
-    private byte[] fileData;
+	@Column(name = "resumo")
+	private String resumo;
 
-    @Column(name = "linkgit")
-    private String linkgit;
-    
-    @Column(name = "equipe")
-    private String equipe;
-    
-	public Integer getId() {
-		return id;
-	}
+	@Lob
+	@Column(name = "Arquivo")
+	private byte[] arquivo;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	@Column(name = "linkgit")
+	private String linkgit;
 
-	public String getNometeste() {
-		return nometeste;
-	}
-
-	public void setNometeste(String nometeste) {
-		this.nometeste = nometeste;
-	}
-
-	public String getResumo() {
-		return resumo;
-	}
-
-	public void setResumo(String resumo) {
-		this.resumo = resumo;
-	}
-
-	public byte[] getFileData() {
-		return fileData;
-	}
-
-	public void setFileData(byte[] fileData) {
-		this.fileData = fileData;
-	}
-
-	public String getLinkgit() {
-		return linkgit;
-	}
-
-	public void setLinkgit(String linkgit) {
-		this.linkgit = linkgit;
-	}
-
-	public String getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(String equipe) {
-		this.equipe = equipe;
-	}
+	@Column(name = "equipe")
+	private String equipe;
 }
