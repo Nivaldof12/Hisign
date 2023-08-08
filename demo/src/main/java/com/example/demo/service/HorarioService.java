@@ -14,12 +14,16 @@ public class HorarioService {
 	private HorarioRepository horarioRepository;
 
 	// Método para salvar um horário
-	public Horario incluir(Horario horario) {
+    public Horario incluir(Horario horario) {
+        horario = calcularHorasTrabalho(horario);
+        if (validarHorasTotaisSemanais(horario.getHorariototalsemanal())) {
+            return horarioRepository.save(horario);
+        } else {
+            throw new IllegalArgumentException("A quantidade de horas totais semanais deve estar entre 25 e 30 horas.");
+        }
+    }
 
-		horario = calcularHorasTrabalho(horario);
-		return horarioRepository.save(horario);
-	}
-
+    //Calcula o horário semanal
 	private Horario calcularHorasTrabalho(Horario horario) {
 		horario.setHoras_dia_Segunda(calcularHorasDia(horario.getEntrada_Segunda(), horario.getIntervalo_Segunda(),
 				horario.getSaida_Segunda()));
@@ -42,7 +46,13 @@ public class HorarioService {
 
 		return horario;
 	}
+	
+	// Faz a validação para saber Se o valor está fora do intervalo entre 25 e 30
+    private boolean validarHorasTotaisSemanais(double horasTotaisSemanais) {
+        return horasTotaisSemanais >= 25 && horasTotaisSemanais <= 30;
+    }
 
+    //Calcula o horário do dia
 	private double calcularHorasDia(String entrada, String intervalo, String saida) {
 		if (entrada == null || saida == null || entrada.isEmpty() || saida.isEmpty()) {
 			return 0; // Retorna 0 se a entrada ou a saída forem nulas ou vazias
@@ -80,10 +90,12 @@ public class HorarioService {
 		return (Collection<Horario>) horarioRepository.findAll();
 	}
 
+	// Método para listar por id
 	public Horario obterHorarioPorId(Integer id) {
 		return horarioRepository.findById(id).orElse(null);
 	}
 
+	// Método que converte String para Hora
 	private double convertStringToHours(String time) {
 		if (time == null || time.isEmpty()) {
 			return 0;
