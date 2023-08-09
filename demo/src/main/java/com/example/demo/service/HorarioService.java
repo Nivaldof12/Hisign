@@ -66,7 +66,7 @@ public class HorarioService {
 		double intervaloHora = convertStringToHours(intervalo);
 		double saidaHora = convertStringToHours(saida);
 
-		if (intervaloHora >= entradaHora && intervaloHora <= saidaHora) {
+		if (intervaloHora > entradaHora && intervaloHora < saidaHora) {
 			return saidaHora - entradaHora - 1;
 		} else {
 			return calcularHorasSemIntervalo(entrada, saida);
