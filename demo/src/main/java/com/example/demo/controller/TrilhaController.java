@@ -65,7 +65,6 @@ public class TrilhaController {
             return ResponseEntity.notFound().build();
         }
     }
-//
     @PostMapping("/{id}/uploadtrilha")
     public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
         try {
