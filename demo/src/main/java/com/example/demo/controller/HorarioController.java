@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -8,30 +9,30 @@ import com.example.demo.domain.Horario;
 import com.example.demo.service.HorarioService;
 
 @Controller
-@RequestMapping(value = "/horario")
+@RequestMapping(value = "/horario", produces = MediaType.APPLICATION_JSON_VALUE)
 public class HorarioController {
 
 	@Autowired
 	private HorarioService horarioService;
 
-	@PostMapping(value = "/incluir")
+	@PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> incluir(@RequestBody Horario horario) {
 		horarioService.incluir(horario);
 		return ResponseEntity.ok("Horário incluído com sucesso!");
 	}
 
-	@GetMapping(value = "/lista")
+	@GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(horarioService.obterLista());
 	}
 
-	@DeleteMapping(value = "/{id}/excluir")
+	@DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
 		return ResponseEntity.ok("Horário excluído com sucesso!");
 	}
 
-	@PutMapping(value = "/{id}/alterar")
+	@PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {

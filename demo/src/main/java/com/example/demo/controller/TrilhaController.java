@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/trilha")
+@RequestMapping(value = "/trilha", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TrilhaController {
 
     private final TrilhaRepository trilhaRepository;
@@ -29,7 +29,7 @@ public class TrilhaController {
         this.trilhaRepository = trilhaRepository;
     }
 
-    @PostMapping(value = "/incluir")
+    @PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> incluir(@RequestBody Trilha trilha) {
         trilhaService.incluir(trilha);
         return ResponseEntity.ok("Trilha incluída com sucesso!");
@@ -37,12 +37,12 @@ public class TrilhaController {
 
 
 
-    @DeleteMapping(value = "/{id}/excluir")
+    @DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> excluir(@PathVariable Integer id) {
         trilhaService.excluirTrilhaById(id);
         return ResponseEntity.ok("Trilha excluída com sucesso!");
     }
-    @GetMapping("/lista")
+    @GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Trilha>> getTrilhasByModulo(@RequestParam("modulo") String modulo) {
         List<Trilha> trilhas = trilhaRepository.findByModulo(modulo);
         if (!trilhas.isEmpty()) {
@@ -52,7 +52,7 @@ public class TrilhaController {
         }
     }
 
-    @PutMapping(value = "/{id}/alterar")
+    @PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Trilha trilhaAlterado) {
         Trilha trilhaexistente = trilhaService.obterTrilhaporId(id);
         if (trilhaexistente != null) {

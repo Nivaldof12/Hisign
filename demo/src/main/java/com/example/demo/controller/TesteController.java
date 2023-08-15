@@ -15,30 +15,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/teste")
+@RequestMapping(value = "/teste", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TesteController {
 
 	@Autowired
 	private TesteService testeService;
 	
-	@PostMapping(value = "/incluir")
+	@PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
 		testeService.incluir(teste);		
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
 	
-	@GetMapping(value = "/lista")
+	@GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(testeService.obterLista());
 	}
 	
-	@DeleteMapping(value = "/{id}/excluir")
+	@DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
 		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
-	@PutMapping(value = "/{id}/alterar")
+	@PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
