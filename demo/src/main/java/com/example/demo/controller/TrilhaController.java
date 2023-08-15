@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/trilha", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/trilha")
 public class TrilhaController {
 
     private final TrilhaRepository trilhaRepository;

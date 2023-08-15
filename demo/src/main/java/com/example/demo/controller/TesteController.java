@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/teste", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/teste")
 public class TesteController {
 
 	@Autowired
