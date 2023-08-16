@@ -9,30 +9,30 @@ import com.example.demo.domain.Horario;
 import com.example.demo.service.HorarioService;
 
 @Controller
-@RequestMapping(value = "/horario", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/horario")
 public class HorarioController {
 ///
 	@Autowired
 	private HorarioService horarioService;
 
-	@PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/incluir")
 	public ResponseEntity<String> incluir(@RequestBody Horario horario) {
 		horarioService.incluir(horario);
 		return ResponseEntity.ok("Horário incluído com sucesso!");
 	}
 
-	@GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(horarioService.obterLista());
 	}
 
-	@DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
 		return ResponseEntity.ok("Horário excluído com sucesso!");
 	}
 
-	@PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{id}/alterar")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {

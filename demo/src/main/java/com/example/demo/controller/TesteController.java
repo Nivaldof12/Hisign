@@ -21,24 +21,24 @@ public class TesteController {
 	@Autowired
 	private TesteService testeService;
 	
-	@PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/incluir")
 	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
 		testeService.incluir(teste);		
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
 	
-	@GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(testeService.obterLista());
 	}
 	
-	@DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		testeService.excluirTestePorId(id);
 		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
-	@PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/{id}/alterar")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {

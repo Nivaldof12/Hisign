@@ -29,7 +29,7 @@ public class TrilhaController {
         this.trilhaRepository = trilhaRepository;
     }
 
-    @PostMapping(value = "/incluir", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/incluir")
     public ResponseEntity<String> incluir(@RequestBody Trilha trilha) {
         trilhaService.incluir(trilha);
         return ResponseEntity.ok("Trilha incluída com sucesso!");
@@ -37,12 +37,12 @@ public class TrilhaController {
 
 
 
-    @DeleteMapping(value = "/{id}/excluir", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}/excluir")
     public ResponseEntity<String> excluir(@PathVariable Integer id) {
         trilhaService.excluirTrilhaById(id);
         return ResponseEntity.ok("Trilha excluída com sucesso!");
     }
-    @GetMapping(value = "/lista", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/lista")
     public ResponseEntity<List<Trilha>> getTrilhasByModulo(@RequestParam("modulo") String modulo) {
         List<Trilha> trilhas = trilhaRepository.findByModulo(modulo);
         if (!trilhas.isEmpty()) {
@@ -52,7 +52,7 @@ public class TrilhaController {
         }
     }
 
-    @PutMapping(value = "/{id}/alterar", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}/alterar")
     public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Trilha trilhaAlterado) {
         Trilha trilhaexistente = trilhaService.obterTrilhaporId(id);
         if (trilhaexistente != null) {
