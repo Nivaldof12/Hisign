@@ -11,7 +11,7 @@ import com.example.demo.service.HorarioService;
 @Controller
 @RequestMapping(value = "/horario", produces = MediaType.APPLICATION_JSON_VALUE)
 public class HorarioController {
-
+///
 	@Autowired
 	private HorarioService horarioService;
 
