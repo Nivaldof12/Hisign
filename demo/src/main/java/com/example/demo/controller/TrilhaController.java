@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/trilha")
+@RequestMapping(value = "/trilha")
 public class TrilhaController {
 ////
     private final TrilhaRepository trilhaRepository;
@@ -42,7 +42,7 @@ public class TrilhaController {
         trilhaService.excluirTrilhaById(id);
         return ResponseEntity.ok("Trilha excluída com sucesso!");
     }
-    @GetMapping("/lista")
+    @GetMapping(value = "/lista")
     public ResponseEntity<List<Trilha>> getTrilhasByModulo(@RequestParam("modulo") String modulo) {
         List<Trilha> trilhas = trilhaRepository.findByModulo(modulo);
         if (!trilhas.isEmpty()) {
