@@ -16,4 +16,7 @@ public class Tce {
 
     @Column(name = "Arquivo")
     private byte[] arquivo;
+
+    @Column(name = "nomecompleto")
+    private String nomecompleto;
 }

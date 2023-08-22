@@ -20,6 +20,16 @@ public class TceController {
     @Autowired
     private TceService tceService;
 
+    @PostMapping(value = "/incluir")
+    public ResponseEntity<String> incluir(@RequestBody Tce tce) {
+        tceService.incluir(tce);
+        return ResponseEntity.ok("Tce incluído com sucesso!");
+    }
+    @GetMapping(value = "/lista")
+    public ResponseEntity<Object> telaLista() {
+        return ResponseEntity.ok(tceService.obterLista());
+    }
+
 
     @PostMapping(value = "/{id}/uploadtce")
     public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
