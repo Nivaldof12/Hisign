@@ -12,7 +12,7 @@ import java.util.Collection;
 public class TceService {
     @Autowired
     private TceRepository tceRepository;
-
+//
 public Tce incluir(Tce tce) {
         return tceRepository.save(tce);
     }

@@ -30,7 +30,7 @@ public class TceController {
         return ResponseEntity.ok(tceService.obterLista());
     }
 
-
+//
     @PostMapping(value = "/{id}/uploadtce")
     public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
         try {
