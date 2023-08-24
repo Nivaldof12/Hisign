@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.Lob;
 
 @Entity
 @Table(name = "tceadicionar")
@@ -14,6 +15,7 @@ public class Tce {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Lob 
     @Column(name = "Arquivo")
     private byte[] arquivo;
 
