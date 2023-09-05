@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/trilha")
+@RequestMapping("/trilhaInicial")
 public class TrilhaController {
 ////
     private final TrilhaRepository trilhaRepository;

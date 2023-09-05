@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Tce;
-import com.example.demo.domain.Teste;
 import com.example.demo.repository.TceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

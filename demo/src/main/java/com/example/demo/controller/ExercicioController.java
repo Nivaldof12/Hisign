@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.domain.Teste;
-import com.example.demo.service.TesteService;
+import com.example.demo.domain.Exercicio;
+import com.example.demo.service.ExercicioService;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
@@ -16,41 +16,41 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/teste")
-public class TesteController {
+public class ExercicioController {
 ////
 	@Autowired
-	private TesteService testeService;
+	private ExercicioService exercicioService;
 	
 	@PostMapping(value = "/incluir")
-	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
-		testeService.incluir(teste);		
+	public ResponseEntity<String> incluir(@RequestBody Exercicio exercicio) {
+		exercicioService.incluir(exercicio);
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
 	
 	@GetMapping(value = "/lista")
 	public ResponseEntity<Object> telaLista() {
-		return ResponseEntity.ok(testeService.obterLista());
+		return ResponseEntity.ok(exercicioService.obterLista());
 	}
 	
 	@DeleteMapping(value = "/{id}/excluir")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
-		testeService.excluirTestePorId(id);
+		exercicioService.excluirTestePorId(id);
 		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
 	@PutMapping(value = "/{id}/alterar")
-	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
-		Teste testeExistente = testeService.obterTestePorId(id);
-		if (testeExistente != null) {
+	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Exercicio exercicioAlterado) {
+		Exercicio exercicioExistente = exercicioService.obterTestePorId(id);
+		if (exercicioExistente != null) {
 			// Atualiza os atributos do teste existente com os valores do teste alterado
-			testeExistente.setNometeste(testeAlterado.getNometeste());
-			testeExistente.setResumo(testeAlterado.getResumo());
-			testeExistente.setArquivo(testeAlterado.getArquivo());
-			testeExistente.setLinkgit(testeAlterado.getLinkgit());
-			testeExistente.setEquipe(testeAlterado.getEquipe());
+			exercicioExistente.setNometeste(exercicioAlterado.getNometeste());
+			exercicioExistente.setResumo(exercicioAlterado.getResumo());
+			exercicioExistente.setArquivo(exercicioAlterado.getArquivo());
+			exercicioExistente.setLinkgit(exercicioAlterado.getLinkgit());
+			exercicioExistente.setEquipe(exercicioAlterado.getEquipe());
 
 			// Salva as alterações no banco de dados
-			testeService.incluir(testeExistente);
+			exercicioService.incluir(exercicioExistente);
 			return ResponseEntity.ok("Teste alterado com sucesso!");
 		} else {
 			return ResponseEntity.notFound().build();
@@ -60,11 +60,11 @@ public class TesteController {
 	@PostMapping("/{id}/uploadpdf")
 	public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
 		try {
-			Teste teste = testeService.obterTestePorId(Integer.parseInt(id));
+			Exercicio exercicio = exercicioService.obterTestePorId(Integer.parseInt(id));
 
-			if (teste != null) {
-				teste.setArquivo(file.getBytes());
-				testeService.incluir(teste);
+			if (exercicio != null) {
+				exercicio.setArquivo(file.getBytes());
+				exercicioService.incluir(exercicio);
 
 				Map<String, String> response = new HashMap<>();
 				response.put("message", "Arquivo enviado com sucesso!");
@@ -87,16 +87,16 @@ public class TesteController {
 	}
 	@GetMapping("/{id}/downloadpdf")
 	public ResponseEntity<byte[]> downloadFile(@PathVariable Integer id) {
-		Teste teste = testeService.obterTestePorId(id);
+		Exercicio exercicio = exercicioService.obterTestePorId(id);
 
-		if (teste != null && teste.getArquivo() != null) {
+		if (exercicio != null && exercicio.getArquivo() != null) {
 			HttpHeaders headers = new HttpHeaders();
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "arquivo.pdf");
 			headers.setContentType(MediaType.APPLICATION_PDF);
 
 			return ResponseEntity.ok()
 					.headers(headers)
-					.body(teste.getArquivo());
+					.body(exercicio.getArquivo());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
