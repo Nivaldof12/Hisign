@@ -31,7 +31,7 @@ O método de GET **/lista** retornam todos os registros existentes e o **/{id}/d
     {
 	    "url": https://hisign-production.up.railway.app/trilha/lista
     }
-Os próximos métodos são utilizados para baixar arquivos:    
+Os próximos métodos são utilizados para baixar arquivos com base no id.:    
     
     {
 	    "url": https://hisign-production.up.railway.app/tce/{id}/downloadtce
