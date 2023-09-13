@@ -43,6 +43,76 @@ Os próximos métodos são utilizados para baixar arquivos com base no id.:
 	    "url": https://hisign-production.up.railway.app/trilha/{id}/downloadtrilha
     }
 
+### POST /
+O método POST **/incluir** faz o cadastro das informações no banco de dados e o **/{id}/upload** faz o cadastro dos arquivos:
+    
+    {
+	    "url": https://hisign-production.up.railway.app/horario/incluir
+
+     	    "nomecompleto": "Nivaldo",
+	    "entrada_Segunda": "",
+            "intervalo_Segunda": "",
+            "saida_Segunda": "",
+	    "entrada_Terca": "08:30",
+            "intervalo_Terca": "11:00",
+            "saida_Terca": "15:30",
+	    "entrada_Quarta": "08:30",
+            "intervalo_Quarta": "11:00",
+            "saida_Quarta": "15:30",
+	    "entrada_Quinta": "08:30",
+            "intervalo_Quinta": "11:00",
+            "saida_Quinta": "15:30",
+	    "entrada_Sexta": "08:30",
+            "intervalo_Sexta": "11:00",
+            "saida_Sexta": "15:30",
+	    "entrada_Sabado": "08:30",
+            "intervalo_Sabado": "11:00",
+            "saida_Sabado": "15:30",
+            "observacao": "",
+            "turno": "noturno",
+	    "empresa": "TT & T",
+	    "setor": "Teste <3"
+    }
+OBS: O método calcula o horário de cada dia e o horário semanal. Além disso, o sistema tem uma exceção que apenas permite o cadastro de horários entre 25 e 30 horas semanais.
+
+    {
+	      "url": https://hisign-production.up.railway.app/teste/incluir
+
+              "nometeste": "teste",
+              "resumo": "acesse o link",
+              "linkgit": "link github.com",
+              "equipe": "manhã"
+    }
+<br>
+    
+    {
+	      "url": https://hisign-production.up.railway.app/trilha/incluir
+
+              "nome_aula": "aula",
+              "descricao": "descricao",
+              "link_aula": "link",
+              "modulo": "modulo"
+    }
+<br>
+Depois de incluir algumas informações no banco a API upload pode ser utilizada para cadastrar arquivos e associar esses arquivos a um id:
+
+OBS: Lembre de trocar a URL {id} por um id existente!
+    
+    {
+	      "url": https://hisign-production.up.railway.app/teste/{id}/uploadpdf
+
+	      "arquivo"
+    }
+<br>
+
+    {
+	      "url": https://hisign-production.up.railway.app/trilha/{id}/uploadtrilha
+
+	      "Resumo_Envio"
+    }
+    
+    
+
 ---
 
 <h2>Tecnologias:</h2>
