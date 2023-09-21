@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,29 +11,34 @@ import com.example.demo.service.HorarioService;
 
 @Controller
 @RequestMapping(value = "/horario")
+@Api(value = "API REST de Horários para a entrada dos candiadatos")
 public class HorarioController {
 ///
 	@Autowired
 	private HorarioService horarioService;
 
 	@PostMapping(value = "/incluir")
+	@ApiOperation(value = "Incluir um novo horário para o candidato")
 	public ResponseEntity<String> incluir(@RequestBody Horario horario) {
 		horarioService.incluir(horario);
 		return ResponseEntity.ok("Horário incluído com sucesso!");
 	}
 
 	@GetMapping(value = "/lista")
+	@ApiOperation(value = "Obter a lista de horários dos candidatos")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(horarioService.obterLista());
 	}
 
 	@DeleteMapping(value = "/{id}/excluir")
+	@ApiOperation(value = "Excluir um horário do candidato")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		horarioService.excluirHorarioPorId(id);
 		return ResponseEntity.ok("Horário excluído com sucesso!");
 	}
 
 	@PutMapping(value = "/{id}/alterar")
+	@ApiOperation(value = "Alterar um horário do candidato")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {

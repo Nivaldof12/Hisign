@@ -1,5 +1,8 @@
 package com.example.demo.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,97 +10,128 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@ApiModel(description = "Campos referentes a horários dos candidatos")
 public class Horario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "Identificador único do horário")
 	private Integer id;
 
 	@Column(name = "nomecompleto")
+	@ApiModelProperty(notes = "Nome completo do candidato // Temporario Ate a chegada do usuario")
 	private String nomecompleto;
 
 	@Column(name = "entrada_Segunda")
+	@ApiModelProperty(notes = "Entrada do candidato na segunda")
 	private String entrada_Segunda;
 
 	@Column(name = "intervalo_Segunda")
+	@ApiModelProperty(notes = "Intervalo do candidato na segunda")
 	private String intervalo_Segunda;
 
 	@Column(name = "saida_Segunda")
+	@ApiModelProperty(notes = "Saida do candidato na segunda")
 	private String saida_Segunda;
 	
 	@Column(name = "horas_dia_Segunda")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na segunda")
 	private Double horas_dia_Segunda;
 
 	@Column(name = "entrada_Terca")
+	@ApiModelProperty(notes = "Entrada do candidato na terça")
 	private String entrada_Terca;
 
 	@Column(name = "intervalo_Terca")
+	@ApiModelProperty(notes = "Intervalo do candidato na terça")
 	private String intervalo_Terca;
 
 	@Column(name = "saida_Terca")
+	@ApiModelProperty(notes = "Saida do candidato na terça")
 	private String saida_Terca;
 	
 	@Column(name = "horas_dia_Terca")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na terça")
 	private Double horas_dia_Terca;
 
 	@Column(name = "entrada_Quarta")
+	@ApiModelProperty(notes = "Entrada do candidato na quarta")
 	private String entrada_Quarta;
 
 	@Column(name = "intervalo_Quarta")
+	@ApiModelProperty(notes = "Intervalo do candidato na quarta")
 	private String intervalo_Quarta;
 
 	@Column(name = "saida_Quarta")
+	@ApiModelProperty(notes = "Saida do candidato na quarta")
 	private String saida_Quarta;
 	
 	@Column(name = "horas_dia_Quarta")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na quarta")
 	private Double horas_dia_Quarta;
 
 	@Column(name = "entrada_Quinta")
+	@ApiModelProperty(notes = "Entrada do candidato na quinta")
 	private String entrada_Quinta;
 
 	@Column(name = "intervalo_Quinta")
+	@ApiModelProperty(notes = "Intervalo do candidato na quinta")
 	private String intervalo_Quinta;
 
 	@Column(name = "saida_Quinta")
+	@ApiModelProperty(notes = "Saida do candidato na quinta")
 	private String saida_Quinta;
 	
 	@Column(name = "horas_dia_Quinta")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na quinta")
 	private Double horas_dia_Quinta;
 
 	@Column(name = "entrada_Sexta")
+	@ApiModelProperty(notes = "Entrada do candidato na sexta")
 	private String entrada_Sexta;
 
 	@Column(name = "intervalo_Sexta")
+	@ApiModelProperty(notes = "Intervalo do candidato na sexta")
 	private String intervalo_Sexta;
 
 	@Column(name = "saida_Sexta")
+	@ApiModelProperty(notes = "Saida do candidato na sexta")
 	private String saida_Sexta;
 	
 	@Column(name = "horas_dia_Sexta")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na sexta")
 	private Double horas_dia_Sexta;
 
 	@Column(name = "entrada_Sabado")
+	@ApiModelProperty(notes = "Entrada do candidato no sabado")
 	private String entrada_Sabado;
 
 	@Column(name = "intervalo_Sabado")
+	@ApiModelProperty(notes = "Intervalo do candidato no sabado")
 	private String intervalo_Sabado;
 
 	@Column(name = "saida_Sabado")
+	@ApiModelProperty(notes = "Saida do candidato no sabado")
 	private String saida_Sabado;
 	
 	@Column(name = "horas_dia_Sabado")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato no sabado")
 	private Double horas_dia_Sabado;
 
 	@Column(name = "observacao")
+	@ApiModelProperty(notes = "Observação do candidato se necessario")
 	private String observacao;
 
 	@Column(name = "turno")
+	@ApiModelProperty(notes = "Turno em que o candidato trabalha")
 	private String turno;
 
 	@Column(name = "horas_trabalhadas_semana")
+	@ApiModelProperty(notes = "Horas trabalhadas do candidato na semana")
 	private Double horariototalsemanal;
 
 	@Column(name = "empresa")
+	@ApiModelProperty(notes = "Empresa em que o candidato se candidatou")
 	private String empresa;
 
 	@Column(name = "setor")

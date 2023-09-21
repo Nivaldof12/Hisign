@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,29 +18,35 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/teste")
+@Api(value = "API REST de Exercícios para a entrada dos candiadatos")
 public class ExercicioController {
 ////
 	@Autowired
 	private ExercicioService exercicioService;
-	
+
+
 	@PostMapping(value = "/incluir")
+	@ApiOperation(value = "Incluir um novo exercício")
 	public ResponseEntity<String> incluir(@RequestBody Exercicio exercicio) {
 		exercicioService.incluir(exercicio);
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
 	
 	@GetMapping(value = "/lista")
+	@ApiOperation(value = "Obter a lista de exercícios")
 	public ResponseEntity<Object> telaLista() {
 		return ResponseEntity.ok(exercicioService.obterLista());
 	}
 	
 	@DeleteMapping(value = "/{id}/excluir")
+	@ApiOperation(value = "Excluir um exercício")
 	public ResponseEntity<String> excluir(@PathVariable Integer id) {
 		exercicioService.excluirTestePorId(id);
 		return ResponseEntity.ok("Teste excluído com sucesso!");
 	}
 
 	@PutMapping(value = "/{id}/alterar")
+	@ApiOperation(value = "Alterar um exercício")
 	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Exercicio exercicioAlterado) {
 		Exercicio exercicioExistente = exercicioService.obterTestePorId(id);
 		if (exercicioExistente != null) {
@@ -58,6 +66,7 @@ public class ExercicioController {
 	}
 
 	@PostMapping("/{id}/uploadpdf")
+	@ApiOperation(value = "Upload de arquivo PDF")
 	public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
 		try {
 			Exercicio exercicio = exercicioService.obterTestePorId(Integer.parseInt(id));
@@ -86,6 +95,7 @@ public class ExercicioController {
 		}
 	}
 	@GetMapping("/{id}/downloadpdf")
+	@ApiOperation(value = "Download de arquivo PDF")
 	public ResponseEntity<byte[]> downloadFile(@PathVariable Integer id) {
 		Exercicio exercicio = exercicioService.obterTestePorId(id);
 

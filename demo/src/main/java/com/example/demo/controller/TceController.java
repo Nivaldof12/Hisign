@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Tce;
 import com.example.demo.service.TceService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,22 +18,26 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/tce")
+@Api(value = "API REST de TCE para a entrada dos candiadatos ")
 public class TceController {
     @Autowired
     private TceService tceService;
 
     @PostMapping(value = "/incluir")
+    @ApiOperation(value = "Incluir um novo TCE")
     public ResponseEntity<String> incluir(@RequestBody Tce tce) {
         tceService.incluir(tce);
         return ResponseEntity.ok("Tce incluído com sucesso!");
     }
     @GetMapping(value = "/lista")
+    @ApiOperation(value = "Obter a lista de TCE")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(tceService.obterLista());
     }
 
 //
     @PostMapping(value = "/{id}/uploadtce")
+    @ApiOperation(value = "Upload de arquivo para o TCE")
     public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
         try {
             Tce tce = tceService.obterTcePorId(Integer.parseInt(id));
@@ -61,6 +67,7 @@ public class TceController {
         }
     }
     @GetMapping("/{id}/downloadtce")
+    @ApiOperation(value = "Download de arquivo do TCE")
     public ResponseEntity<byte[]> downloadFile(@PathVariable Integer id) {
         Tce tce = tceService.obterTcePorId(id);
 

@@ -1,6 +1,8 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.Trilha;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

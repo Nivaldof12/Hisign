@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.domain.Trilha;
 import com.example.demo.repository.TrilhaRepository;
 import com.example.demo.service.TrilhaService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/trilhaInicial")
+@Api(value = "API REST da Trilha inicial para a entrada dos candiadatos ")
 public class TrilhaController {
 ////
     private final TrilhaRepository trilhaRepository;
@@ -30,6 +33,7 @@ public class TrilhaController {
     }
 
     @PostMapping(value = "/incluir")
+    @ApiOperation(value = "Incluir uma nova trilha")
     public ResponseEntity<String> incluir(@RequestBody Trilha trilha) {
         trilhaService.incluir(trilha);
         return ResponseEntity.ok("Trilha incluída com sucesso!");
@@ -38,11 +42,13 @@ public class TrilhaController {
 
 
     @DeleteMapping(value = "/{id}/excluir")
+    @ApiOperation(value = "Excluir uma trilha")
     public ResponseEntity<String> excluir(@PathVariable Integer id) {
         trilhaService.excluirTrilhaById(id);
         return ResponseEntity.ok("Trilha excluída com sucesso!");
     }
     @GetMapping("/lista")
+    @ApiOperation(value = "Obter a lista de trilhas")
     public ResponseEntity<List<Trilha>> getTrilhasByModulo(@RequestParam("modulo") String modulo) {
         List<Trilha> trilhas = trilhaRepository.findByModulo(modulo);
         if (!trilhas.isEmpty()) {
@@ -53,6 +59,7 @@ public class TrilhaController {
     }
 
     @PutMapping(value = "/{id}/alterar")
+    @ApiOperation(value = "Alterar uma trilha")
     public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Trilha trilhaAlterado) {
         Trilha trilhaexistente = trilhaService.obterTrilhaporId(id);
         if (trilhaexistente != null) {
@@ -66,6 +73,7 @@ public class TrilhaController {
         }
     }
     @PostMapping("/{id}/uploadtrilha")
+    @ApiOperation(value = "Upload de arquivo de resumo da trilha PDF")
     public ResponseEntity<Map<String, String>> uploadFile(@PathVariable String id, @RequestParam("file") MultipartFile file) {
         try {
             Trilha trilha = trilhaService.obterTrilhaporId(Integer.parseInt(id));
@@ -94,6 +102,7 @@ public class TrilhaController {
         }
     }
     @GetMapping("/{id}/downloadtrilha")
+    @ApiOperation(value = "Download de arquivo do resumo da trilha")
     public ResponseEntity<byte[]> downloadFile(@PathVariable Integer id) {
         Trilha trilha = trilhaService.obterTrilhaporId(id);
 
