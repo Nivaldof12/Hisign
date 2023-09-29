@@ -49,6 +49,7 @@ O método POST **/incluir** faz o cadastro das informações no banco de dados e
     {
 	    "url": https://hisign-production.up.railway.app/horario/incluir
 
+	    Exemplo:
      	    "nomecompleto": "Nivaldo",
 	    "entrada_Segunda": "",
             "intervalo_Segunda": "",
@@ -73,11 +74,12 @@ O método POST **/incluir** faz o cadastro das informações no banco de dados e
 	    "empresa": "TT & T",
 	    "setor": "Teste <3"
     }
-OBS: O método calcula o horário de cada dia e o horário semanal. Além disso, o sistema tem uma exceção que apenas permite o cadastro de horários entre 25 e 30 horas semanais.
+OBS: O sistema tem uma exceção que apenas permite o cadastro de horários entre 25 e 30 horas semanais.
 
     {
 	      "url": https://hisign-production.up.railway.app/teste/incluir
-
+              
+	      Exemplo:
               "nometeste": "teste",
               "resumo": "acesse o link",
               "linkgit": "link github.com",
@@ -88,6 +90,7 @@ OBS: O método calcula o horário de cada dia e o horário semanal. Além disso,
     {
 	      "url": https://hisign-production.up.railway.app/trilha/incluir
 
+	      Exemplo:
               "nome_aula": "aula",
               "descricao": "descricao",
               "link_aula": "link",
@@ -116,16 +119,54 @@ O método PUT **/{id}/alterar** faz a alteração das informações no banco de 
 
     {
 	    "url": https://hisign-production.up.railway.app/horario/{id}/alterar
+
+	      Exemplo:
+              "nomecompleto": "Nome Trocado",
+	      "entrada_Segunda": "08:30",
+              "intervalo_Segunda": "11:00",
+              "saida_Segunda": "15:30",
+	      "entrada_Terca": "08:30",
+              "intervalo_Terca": "11:00",
+              "saida_Terca": "15:30",
+	      "entrada_Quarta": "08:30",
+              "intervalo_Quarta": "11:00",
+              "saida_Quarta": "15:30",
+	      "entrada_Quinta": "08:30",
+              "intervalo_Quinta": "11:00",
+              "saida_Quinta": "15:30",
+	      "entrada_Sexta": "08:30",
+              "intervalo_Sexta": "11:00",
+              "saida_Sexta": "15:30",
+	      "entrada_Sabado": "08:30",
+              "intervalo_Sabado": "11:00",
+              "saida_Sabado": "12:30",
+              "observacao": "teste",
+              "turno": "manhã",
+	      "empresa": "TT & T",
+	      "setor": "Troca"
     }
  <br>
 
     {
 	    "url": https://hisign-production.up.railway.app/teste/{id}/alterar
+              
+	      Exemplo:
+              "nometeste": "teste1",
+  	      "resumo": "link para git",
+              "arquivo": null,
+              "linkgit": "gitlav.com",
+              "equipe": "noturna"
     }
  <br>
 
     {
 	    "url": https://hisign-production.up.railway.app/trilha/{id}/alterar
+
+     	    Exemplo:
+            "nome_aula": "aula back",
+  	    "descricao": "teste",
+            "link_aula": "link",
+            "modulo": "teste"
     }
 
 ### DELETE /
