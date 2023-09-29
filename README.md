@@ -110,8 +110,40 @@ OBS: Lembre de trocar a URL {id} por um id existente!
 
 	      "Resumo_Envio"
     }
-    
-    
+
+### PUT /
+O método PUT **/{id}/alterar** faz a alteração das informações no banco de dados:
+
+    {
+	    "url": https://hisign-production.up.railway.app/horario/{id}/alterar
+    }
+ <br>
+
+    {
+	    "url": https://hisign-production.up.railway.app/teste/{id}/alterar
+    }
+ <br>
+
+    {
+	    "url": https://hisign-production.up.railway.app/trilha/{id}/alterar
+    }
+
+### DELETE /
+O método DELETE **/{id}/excluir** exclui as informações do banco de dados:
+        
+    {
+	    "url": https://hisign-production.up.railway.app/horario/{id}/excluir
+    }
+ <br>
+
+    {
+	    "url": https://hisign-production.up.railway.app/teste/{id}/excluir
+    }
+ <br>
+
+    {
+	    "url": https://hisign-production.up.railway.app/trilha/{id}/excluir
+    }
 
 ---
 
