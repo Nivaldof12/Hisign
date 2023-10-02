@@ -1,10 +1,17 @@
 package com.example.demo.domain;
 
+
+
+
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Horario {
@@ -14,6 +21,7 @@ public class Horario {
 	private Integer id;
 
 	@Column(name = "nomecompleto")
+	@NotBlank (message = "Nome não pode ficar em branco!")
 	private String nomecompleto;
 
 	@Column(name = "entrada_Segunda")
