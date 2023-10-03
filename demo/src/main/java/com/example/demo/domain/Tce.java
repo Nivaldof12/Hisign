@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tceadicionar")
@@ -20,5 +21,6 @@ public class Tce {
     private byte[] arquivo;
 
     @Column(name = "nomecompleto")
+    @NotBlank(message = "Nome não pode ficar em branco!")
     private String nomecompleto;
 }
