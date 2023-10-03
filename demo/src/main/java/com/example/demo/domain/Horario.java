@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Horario {
@@ -25,72 +26,90 @@ public class Horario {
 	private String nomecompleto;
 
 	@Column(name = "entrada_Segunda")
+	@Size(min = 5, max = 5, message = "Entrada da Segunda-Feira inválida!")
 	private String entrada_Segunda;
 
 	@Column(name = "intervalo_Segunda")
+	@Size(min = 5, max = 5, message = "Intervalo da Segunda-Feira inválido!")
 	private String intervalo_Segunda;
 
 	@Column(name = "saida_Segunda")
+	@Size(min = 5, max = 5, message = "Saída da Segunda-Feira inválida!")
 	private String saida_Segunda;
 	
 	@Column(name = "horas_dia_Segunda")
 	private Double horas_dia_Segunda;
 
 	@Column(name = "entrada_Terca")
+	@Size(min = 5, max = 5, message = "Entrada da Terça-Feira inválido!")
 	private String entrada_Terca;
 
 	@Column(name = "intervalo_Terca")
+	@Size(min = 5, max = 5, message = "Intervalo da Terça-Feira inválido!")
 	private String intervalo_Terca;
 
 	@Column(name = "saida_Terca")
+	@Size(min = 5, max = 5, message = "Saída da Terça-Feira inválida!")
 	private String saida_Terca;
 	
 	@Column(name = "horas_dia_Terca")
 	private Double horas_dia_Terca;
 
 	@Column(name = "entrada_Quarta")
+	@Size(min = 5, max = 5, message = "Entrada da Quarta-Feira inválida!")
 	private String entrada_Quarta;
 
 	@Column(name = "intervalo_Quarta")
+	@Size(min = 5, max = 5, message = "Intervalo da Quarta-feira inválido!")
 	private String intervalo_Quarta;
 
 	@Column(name = "saida_Quarta")
+	@Size(min = 5, max = 5, message = "Saída da Quarta-feira inválido!")
 	private String saida_Quarta;
 	
 	@Column(name = "horas_dia_Quarta")
 	private Double horas_dia_Quarta;
 
 	@Column(name = "entrada_Quinta")
+	@Size(min = 5, max = 5, message = "Entrada da Quinta-feira inválido!")
 	private String entrada_Quinta;
 
 	@Column(name = "intervalo_Quinta")
+	@Size(min = 5, max = 5, message = "Intervalo da Quinta-feira inválido!")
 	private String intervalo_Quinta;
 
 	@Column(name = "saida_Quinta")
+	@Size(min = 5, max = 5, message = "Saída da Quinta-feira inválido!")
 	private String saida_Quinta;
 	
 	@Column(name = "horas_dia_Quinta")
 	private Double horas_dia_Quinta;
 
 	@Column(name = "entrada_Sexta")
+	@Size(min = 5, max = 5, message = "Entrada da Sexta-feira inválida!")
 	private String entrada_Sexta;
 
 	@Column(name = "intervalo_Sexta")
+	@Size(min = 5, max = 5, message = "Intervalo da Sexta-feira inválido!")
 	private String intervalo_Sexta;
 
 	@Column(name = "saida_Sexta")
+	@Size(min = 5, max = 5, message = "Saída da Sexta-feira inválido!")
 	private String saida_Sexta;
 	
 	@Column(name = "horas_dia_Sexta")
 	private Double horas_dia_Sexta;
 
 	@Column(name = "entrada_Sabado")
+	@Size(min = 5, max = 5, message = "Entrada do sábado inválido!")
 	private String entrada_Sabado;
 
 	@Column(name = "intervalo_Sabado")
+	@Size(min = 5, max = 5, message = "Intervalo do sábado inválido!")
 	private String intervalo_Sabado;
 
 	@Column(name = "saida_Sabado")
+	@Size(min = 5, max = 5, message = "Saída do sábado inválido!")
 	private String saida_Sabado;
 	
 	@Column(name = "horas_dia_Sabado")
@@ -100,15 +119,18 @@ public class Horario {
 	private String observacao;
 
 	@Column(name = "turno")
+	@NotBlank(message = "Turmo não pode ficar em branco!")
 	private String turno;
 
 	@Column(name = "horas_trabalhadas_semana")
 	private Double horariototalsemanal;
 
 	@Column(name = "empresa")
+	@NotBlank(message = "Empresa não pode ficar em branco!")
 	private String empresa;
 
 	@Column(name = "setor")
+	@NotBlank(message = "Setor não pode ficar em branco!")
 	private String setor;
 	
 	// Getters and Setters

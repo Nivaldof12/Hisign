@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class APIExceptionHandler extends ResponseEntityExceptionHandler {
-
-
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String message = ex.getBindingResult()
@@ -30,7 +28,8 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity handleException(Exception e){
-        return new ResponseEntity("erro teste", HttpStatus.BAD_GATEWAY);
+    public ResponseEntity handleNullPointerException(NullPointerException e){
+        String mensagem = "Ocorreu um erro de referência nula: " + e.getMessage();
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(mensagem);
     }
 }
