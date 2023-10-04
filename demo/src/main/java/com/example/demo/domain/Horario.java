@@ -24,6 +24,7 @@ public class Horario {
 
 	@Column(name = "nomecompleto")
 	@NotBlank (message = "Nome não pode ficar em branco!")
+	@Size(min = 0, max = 50, message = "Entrada da descrição inválida!(Deve conter no máximo 50 caracteres)")
 	@Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+$", message = "O campo de nome deve conter apenas letras, acentos e espaços.")
 	private String nomecompleto;
 
@@ -118,6 +119,7 @@ public class Horario {
 	private Double horas_dia_Sabado;
 
 	@Column(name = "observacao")
+	@Size(min = 0, max = 700, message = "Entrada da observação inválida!(O campo deve conter no máximo 700 caracteres)")
 	private String observacao;
 
 	@Column(name = "turno")
@@ -130,10 +132,12 @@ public class Horario {
 
 	@Column(name = "empresa")
 	@NotBlank(message = "Empresa não pode ficar em branco!")
+	@Size(min = 0, max = 50, message = "Entrada da Empresa inválida!(Campo deve conter no máximo 50 caracteres)")
 	private String empresa;
 
 	@Column(name = "setor")
 	@NotBlank(message = "Setor não pode ficar em branco!")
+	@Size(min = 0, max = 25, message = "Entrada do setor inválida!(Deve conter no máximo 25 caracteres)")
 	private String setor;
 	
 	// Getters and Setters
