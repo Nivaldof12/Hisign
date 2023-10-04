@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Teste;
 import com.example.demo.service.TesteService;
@@ -22,7 +23,7 @@ public class TesteController {
 	private TesteService testeService;
 	
 	@PostMapping(value = "/incluir")
-	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
+	public ResponseEntity<String> incluir(@Validated @RequestBody Teste teste) {
 		testeService.incluir(teste);		
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}

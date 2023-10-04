@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "teste")
@@ -22,6 +23,7 @@ public class Teste {
 	private Integer id;
 
 	@Column(name = "nometeste")
+	@NotBlank(message = "Nome do teste não pode ficar em branco!")
 	private String nometeste;
 
 	@Column(name = "resumo")
