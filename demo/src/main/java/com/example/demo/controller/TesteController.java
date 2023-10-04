@@ -40,7 +40,7 @@ public class TesteController {
 	}
 
 	@PutMapping(value = "/{id}/alterar")
-	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
+	public ResponseEntity<String> alterar(@PathVariable Integer id, @Validated @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
 			// Atualiza os atributos do teste existente com os valores do teste alterado

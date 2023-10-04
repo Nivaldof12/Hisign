@@ -54,7 +54,7 @@ public class TrilhaController {
     }
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Trilha trilhaAlterado) {
+    public ResponseEntity<String> alterar(@PathVariable Integer id, @Validated @RequestBody Trilha trilhaAlterado) {
         Trilha trilhaexistente = trilhaService.obterTrilhaporId(id);
         if (trilhaexistente != null) {
             // Atualiza os atributos do trilha existente com os valores do trilha alterado
