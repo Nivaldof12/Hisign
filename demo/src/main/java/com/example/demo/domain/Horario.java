@@ -28,15 +28,15 @@ public class Horario {
 	private String nomecompleto;
 
 	@Column(name = "entrada_Segunda")
-	@Size(min = 5, max = 5, message = "Entrada da Segunda-Feira inválida!")
+	@Size(min = 0, max = 5, message = "Entrada da Segunda-Feira inválida!")
 	private String entrada_Segunda;
 
 	@Column(name = "intervalo_Segunda")
-	@Size(min = 5, max = 5, message = "Intervalo da Segunda-Feira inválido!")
+	@Size(min = 0, max = 5, message = "Intervalo da Segunda-Feira inválido!")
 	private String intervalo_Segunda;
 
 	@Column(name = "saida_Segunda")
-	@Size(min = 5, max = 5, message = "Saída da Segunda-Feira inválida!")
+	@Size(min = 0, max = 5, message = "Saída da Segunda-Feira inválida!")
 	private String saida_Segunda;
 	
 	@Column(name = "horas_dia_Segunda")
