@@ -19,7 +19,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(fieldError -> fieldError.getDefaultMessage())
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(" | "));
 
         // Retorna um JSON com a mensagem de erro e o status BAD_REQUEST
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(

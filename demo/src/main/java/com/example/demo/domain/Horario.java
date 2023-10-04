@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -23,6 +24,7 @@ public class Horario {
 
 	@Column(name = "nomecompleto")
 	@NotBlank (message = "Nome não pode ficar em branco!")
+	@Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+$", message = "O campo de nome deve conter apenas letras, acentos e espaços.")
 	private String nomecompleto;
 
 	@Column(name = "entrada_Segunda")
