@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,7 +31,7 @@ public class TrilhaController {
     }
 
     @PostMapping(value = "/incluir")
-    public ResponseEntity<String> incluir(@RequestBody Trilha trilha) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Trilha trilha) {
         trilhaService.incluir(trilha);
         return ResponseEntity.ok("Trilha incluída com sucesso!");
     }
@@ -53,7 +54,7 @@ public class TrilhaController {
     }
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Trilha trilhaAlterado) {
+    public ResponseEntity<String> alterar(@PathVariable Integer id, @Validated @RequestBody Trilha trilhaAlterado) {
         Trilha trilhaexistente = trilhaService.obterTrilhaporId(id);
         if (trilhaexistente != null) {
             // Atualiza os atributos do trilha existente com os valores do trilha alterado

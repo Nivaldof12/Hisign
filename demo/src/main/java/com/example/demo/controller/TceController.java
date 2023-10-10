@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,7 @@ public class TceController {
     private TceService tceService;
 
     @PostMapping(value = "/incluir")
-    public ResponseEntity<String> incluir(@RequestBody Tce tce) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Tce tce) {
         tceService.incluir(tce);
         return ResponseEntity.ok("Tce incluído com sucesso!");
     }

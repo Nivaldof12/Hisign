@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Teste;
 import com.example.demo.service.TesteService;
@@ -22,7 +23,7 @@ public class TesteController {
 	private TesteService testeService;
 	
 	@PostMapping(value = "/incluir")
-	public ResponseEntity<String> incluir(@RequestBody Teste teste) {
+	public ResponseEntity<String> incluir(@Validated @RequestBody Teste teste) {
 		testeService.incluir(teste);		
 		return ResponseEntity.ok("Teste incluído com sucesso!");
 	}
@@ -39,7 +40,7 @@ public class TesteController {
 	}
 
 	@PutMapping(value = "/{id}/alterar")
-	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Teste testeAlterado) {
+	public ResponseEntity<String> alterar(@PathVariable Integer id, @Validated @RequestBody Teste testeAlterado) {
 		Teste testeExistente = testeService.obterTestePorId(id);
 		if (testeExistente != null) {
 			// Atualiza os atributos do teste existente com os valores do teste alterado

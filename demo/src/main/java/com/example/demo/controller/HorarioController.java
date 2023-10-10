@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Horario;
 import com.example.demo.service.HorarioService;
 
-@Controller
+@RestController
 @RequestMapping(value = "/horario")
 public class HorarioController {
 ///
@@ -16,7 +17,7 @@ public class HorarioController {
 	private HorarioService horarioService;
 
 	@PostMapping(value = "/incluir")
-	public ResponseEntity<String> incluir(@RequestBody Horario horario) {
+	public ResponseEntity<String> incluir(@Validated @RequestBody Horario horario) {
 		horarioService.incluir(horario);
 		return ResponseEntity.ok("Horário incluído com sucesso!");
 	}
@@ -33,7 +34,7 @@ public class HorarioController {
 	}
 
 	@PutMapping(value = "/{id}/alterar")
-	public ResponseEntity<String> alterar(@PathVariable Integer id, @RequestBody Horario horarioAlterado) {
+	public ResponseEntity<String> alterar(@PathVariable Integer id,@Validated @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {
 			// Atualiza os atributos do horário existente com os valores do horário alterado
