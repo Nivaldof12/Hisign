@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Horario;
 import com.example.demo.service.HorarioService;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/horario")
 public class HorarioController {
@@ -71,6 +73,8 @@ public class HorarioController {
 
 			// Salva as alterações no banco de dados
 			horarioService.incluir(horarioExistente);
+			// Registra as alterações em log
+			log.info("horario com ID:{} foi alterado por: {}",horarioExistente.getId(), horarioExistente.getNomecompleto());
 			return ResponseEntity.ok("Horário alterado com sucesso!");
 		} else {
 			return ResponseEntity.notFound().build();
