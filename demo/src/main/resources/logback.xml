@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_DIR_SPLUNK" value="logs/log-hising"/>
+
+    <!-- Log console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>timestamp: %d{dd-MM-yyyy HH:mm:ss.SSS}, message: %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- saída de log é anexada somente em um arquivo -->
+    <appender name="splunk" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR_SPLUNK:-env/}/logs.txt</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} | %msg%n%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuração do logger para a classe HorarioController -->
+    <logger name="com.example.demo.controller.HorarioController" level="info">
+        <appender-ref ref="splunk"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
