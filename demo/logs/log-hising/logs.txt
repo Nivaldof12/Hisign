@@ -24,3 +24,16 @@
  Empresa: TT & T 
  Setor: Devops
 
+16-10-2023 09:27:26.001 | horario com ID:1 foi alterado por: rodrigo s  | horário antigo era: 
+ Entrada Segunda: 08:00  | Intervalo Segunda: 00:00 | Saída Segunda: 13:00 | Horas na Segunda: 5.0
+ Entrada Terça: 07:00 | Intervalo Terça: 00:00 | Saída Terça: 12:00 | Horas na Terça: 5.0
+ Entrada Quarta: 07:00 | Intervalo Quarta: 00:00 | Saída Quarta: 12:00 | Horas na Quarta: 5.0
+ Entrada Quinta: 07:00 | Intervalo Quinta: 00:00 | Saída Quinta: 12:00 | Horas na Quinta: 5.0
+ Entrada Sexta: 07:00 | Intervalo Sexta: 00:00 | Saída Sexta: 12:00 | Horas na Sexta: 5.0
+ Entrada Sábado: 00:00 | Intervalo Sábado: 00:00 | Saída Sábado: 00:00 | Horas no Sábado: 0.0
+ Observação: grgrgrgryjyjyj 
+ Turno: Matutina 
+ Horário Total Semanal: 25.0 
+ Empresa: TT & T 
+ Setor: Devops
+
