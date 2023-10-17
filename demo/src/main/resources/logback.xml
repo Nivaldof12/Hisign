@@ -11,7 +11,7 @@
 
     <!-- saída de log é anexada somente em um arquivo -->
     <appender name="splunk" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_DIR_SPLUNK:-env/}/logs.txt</file>
+        <file>${LOG_DIR_SPLUNK}/logs.txt</file>
         <append>true</append>
         <encoder>
             <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} | %msg%n%n</pattern>
