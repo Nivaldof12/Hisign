@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.domain.Horario;
 import com.example.demo.service.HorarioService;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/horario")
 public class HorarioController {
@@ -37,6 +39,23 @@ public class HorarioController {
 	public ResponseEntity<String> alterar(@PathVariable Integer id,@Validated @RequestBody Horario horarioAlterado) {
 		Horario horarioExistente = horarioService.obterHorarioPorId(id);
 		if (horarioExistente != null) {
+			// Registra o horário antigo em log
+			log.info("horario com ID:{} foi alterado por: {}  | horário antigo era: \n Entrada Segunda: {}  | Intervalo Segunda: {} | Saída Segunda: {} | Horas na Segunda: {}" +
+							"\n Entrada Terça: {} | Intervalo Terça: {} | Saída Terça: {} | Horas na Terça: {}" +
+							"\n Entrada Quarta: {} | Intervalo Quarta: {} | Saída Quarta: {} | Horas na Quarta: {}" +
+							"\n Entrada Quinta: {} | Intervalo Quinta: {} | Saída Quinta: {} | Horas na Quinta: {}" +
+							"\n Entrada Sexta: {} | Intervalo Sexta: {} | Saída Sexta: {} | Horas na Sexta: {}" +
+							"\n Entrada Sábado: {} | Intervalo Sábado: {} | Saída Sábado: {} | Horas no Sábado: {}" +
+							"\n Observação: {} \n Turno: {} \n Horário Total Semanal: {} \n Empresa: {} \n Setor: {}",
+					horarioExistente.getId(), horarioExistente.getNomecompleto(),
+					horarioExistente.getEntrada_Segunda(), horarioExistente.getIntervalo_Segunda(), horarioExistente.getSaida_Segunda(), horarioExistente.getHoras_dia_Segunda(),
+			horarioExistente.getEntrada_Terca(), horarioExistente.getIntervalo_Terca(), horarioExistente.getSaida_Terca(), horarioExistente.getHoras_dia_Terca(),
+					horarioExistente.getEntrada_Quarta(), horarioExistente.getIntervalo_Quarta(), horarioExistente.getSaida_Quarta(), horarioExistente.getHoras_dia_Quarta(),
+					horarioExistente.getEntrada_Quinta(), horarioExistente.getIntervalo_Quinta(), horarioExistente.getSaida_Quinta(), horarioExistente.getHoras_dia_Quinta(),
+					horarioExistente.getEntrada_Sexta(), horarioExistente.getIntervalo_Sexta(), horarioExistente.getSaida_Sexta(), horarioExistente.getHoras_dia_Sexta(),
+					horarioExistente.getEntrada_Sabado(), horarioExistente.getIntervalo_Sabado(), horarioExistente.getSaida_Sabado(), horarioExistente.getHoras_dia_Sabado(),
+					horarioExistente.getObservacao(), horarioExistente.getTurno(), horarioExistente.getHorariototalsemanal(), horarioExistente.getEmpresa(), horarioExistente.getSetor());
+
 			// Atualiza os atributos do horário existente com os valores do horário alterado
 			horarioExistente.setNomecompleto(horarioAlterado.getNomecompleto());
 			// Alterar Segunda
