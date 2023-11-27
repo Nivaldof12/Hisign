@@ -29,7 +29,7 @@ public class Teste {
 	private String nometeste;
 
 	@Column(name = "resumo")
-	@Size(min = 0, max = 700, message = "Entrada do link inválido!(Deve conter no máximo 700 caracteres)")
+	@Size(min = 0, max = 700, message = "Entrada do resumo inválido!(Deve conter no máximo 700 caracteres)")
 	private String resumo;
 
 	@Lob
