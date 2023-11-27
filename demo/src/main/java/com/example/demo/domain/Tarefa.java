@@ -21,7 +21,7 @@ public class Tarefa {
     private String data;
 
     @Column(name = "titulo")
-    @Size(min = 0, max = 100, message = "Entrada do link inválido!(Deve conter no máximo 100 caracteres)")
+    @Size(min = 0, max = 100, message = "Entrada do título inválida!(Deve conter no máximo 100 caracteres)")
     private String titulo;
 
     @Column(name = "horario_inicio")
