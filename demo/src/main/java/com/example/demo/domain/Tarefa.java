@@ -1,9 +1,15 @@
 package com.example.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "tarefa")
+@Getter
+@Setter
 public class Tarefa {
 
     @Id

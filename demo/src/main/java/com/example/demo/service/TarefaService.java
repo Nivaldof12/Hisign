@@ -13,7 +13,7 @@ public class TarefaService {
     private TarefaRepository tarefaRepository;
 
     // Método para salvar
-    public void incluir(com.example.demo.domain.Tarefa tarefa) {
+    public void incluir(Tarefa tarefa) {
         tarefaRepository.save(tarefa);
     }
 
