@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tarefa")
+@RequestMapping(value = "/tarefa")
 public class TarefaController {
     @Autowired
     private TarefaService tarefaService;
