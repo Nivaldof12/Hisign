@@ -42,6 +42,13 @@ public class Usuario implements UserDetails {
     @NotBlank(message = "Informe a autorização do usuário(ADMIN OU USER)")
     private UsuarioRegras regra;
 
+    public Usuario(String email, String senha, String nome, UsuarioRegras regra){
+        this.email = email;
+        this.senha = senha;
+        this.nome = nome;
+        this.regra = regra;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.regra == UsuarioRegras.ADMIN) return List.of(new SimpleGrantedAuthority("REGRA_ADMIN"), new SimpleGrantedAuthority("REGRA_USER"));
