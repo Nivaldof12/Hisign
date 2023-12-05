@@ -1,8 +1,8 @@
 package com.example.demo.domain.usuario;
 
 public enum UsuarioRegras {
-    ADMIN("ADMIN"),
-    USER("USER");
+    ADMIN("admin"),
+    USER("user");
 
     private String regra;
 

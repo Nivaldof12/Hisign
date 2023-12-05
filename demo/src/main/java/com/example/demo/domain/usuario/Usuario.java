@@ -30,7 +30,7 @@ public class Usuario implements UserDetails {
     private String email;
     @Column(name = "senha")
     @NotBlank(message = "Senha não pode ficar em branco!")
-    @Size(min = 5, max = 30, message = "Senha inválida!(Deve conter no mínimo 5 caracteres e no máximo 30)")
+    //@Size(min = 5, message = "Senha inválida!(Deve conter no mínimo 5 caracteres)")
     private String senha;
 
     @Column(name = "nome")
@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
     @Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+$", message = "O campo de nome deve conter apenas letras, acentos e espaços.")
     private String nome;
     @Column(name = "regra")
-    @NotBlank(message = "Informe a autorização do usuário(ADMIN OU USER)")
+    //@NotBlank(message = "Informe a autorização do usuário(ADMIN OU USER)")
     private UsuarioRegras regra;
 
     public Usuario(String email, String senha, String nome, UsuarioRegras regra){
