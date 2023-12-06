@@ -30,7 +30,6 @@ public class Usuario implements UserDetails {
     private String email;
     @Column(name = "senha")
     @NotBlank(message = "Senha não pode ficar em branco!")
-    //@Size(min = 5, message = "Senha inválida!(Deve conter no mínimo 5 caracteres)")
     private String senha;
 
     @Column(name = "nome")
