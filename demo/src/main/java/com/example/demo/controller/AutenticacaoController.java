@@ -38,13 +38,13 @@ public class AutenticacaoController {
     @PostMapping("/registrar")
     public ResponseEntity register(@RequestBody @Valid RegistroDTO data){
         //verifica se já tem o mesmo email cadastrado
-        if(this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
+        if(this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().body("Email já cadastrado!");
 
         //encryptar a senha do usuário
         String encryptSenha = new BCryptPasswordEncoder().encode(data.senha());
 
         Usuario usuario = new Usuario(data.email(), encryptSenha, data.nome(), data.regra());
         this.usuarioRepository.save(usuario);
-        return  ResponseEntity.ok().build();
+        return  ResponseEntity.ok("Usuário cadastrado com sucesso!");
     }
 }
