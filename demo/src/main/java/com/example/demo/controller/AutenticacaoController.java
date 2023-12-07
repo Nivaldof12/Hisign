@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.usuario.AutenticacaoDTO;
+import com.example.demo.domain.usuario.LoginResponseDTO;
 import com.example.demo.domain.usuario.RegistroDTO;
 import com.example.demo.domain.usuario.Usuario;
 import com.example.demo.repository.UsuarioRepository;
+import com.example.demo.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +29,17 @@ public class AutenticacaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AutenticacaoDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.geradorToken((Usuario)auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/registrar")
