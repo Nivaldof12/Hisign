@@ -30,8 +30,8 @@ public class SecurityConfig {
                         .antMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
                         //.antMatchers(HttpMethod.POST, "/tarefa").hasRole("ADMIN")
                         //.antMatchers(HttpMethod.GET, "/tarefa/lista").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                        //.anyRequest().permitAll()
+                        //.anyRequest().authenticated()
+                        .anyRequest().permitAll()
                         )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
