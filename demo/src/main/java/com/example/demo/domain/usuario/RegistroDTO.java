@@ -14,5 +14,5 @@ public record RegistroDTO(
         @NotBlank(message = "Nome não pode ficar em branco!")
         @Size(min = 3, max = 50, message = "Nome inválido!(Deve conter no mínimo 3 caracteres e no máximo 50)")
         String nome,
-        String regra) {
+        UsuarioRegras regra) {
 }

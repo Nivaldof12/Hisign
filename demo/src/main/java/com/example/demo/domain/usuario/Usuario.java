@@ -39,18 +39,20 @@ public class Usuario implements UserDetails {
     @Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+$", message = "O campo de nome deve conter apenas letras, acentos e espaços.")
     private String nome;
     @Column(name = "regra")
-    private String regra;
+    @Enumerated(EnumType.STRING)
+    private UsuarioRegras regra;
 
-    public Usuario(String email, String senha, String nome, String regra){
+    public Usuario(String email, String senha, String nome, UsuarioRegras regra){
         this.email = email;
         this.senha = senha;
         this.nome = nome;
-        this.regra = (regra != null && !regra.isEmpty()) ? regra : "USER";
+        this.regra = (regra != null) ? regra : UsuarioRegras.USER;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.regra == "ADMIN") return List.of(new SimpleGrantedAuthority("REGRA_ADMIN"), new SimpleGrantedAuthority("REGRA_USER"));
+        if(this.regra == UsuarioRegras.ADMIN) return List.of(new SimpleGrantedAuthority("REGRA_ADMIN"),
+                new SimpleGrantedAuthority("REGRA_USER"));
         else return List.of(new SimpleGrantedAuthority("REGRA_USER"));
     }
 
