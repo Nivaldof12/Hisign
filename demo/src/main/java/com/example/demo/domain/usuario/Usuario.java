@@ -25,7 +25,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Email(message = "Email inválido!")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @NotBlank(message = "Email não pode ficar em branco!")
     private String email;
     @Column(name = "senha")
